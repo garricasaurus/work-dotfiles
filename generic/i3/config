@@ -144,9 +144,9 @@ bindsym $mod+r mode "resize"
 
 # multimedia buttons
 # audio
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +1%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -1%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle 
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle 
 
 # brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id brillo -A 1
