@@ -2,7 +2,6 @@
 
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
-xrandr --dpi 96
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
