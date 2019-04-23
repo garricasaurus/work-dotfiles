@@ -173,7 +173,7 @@ bindsym --release Print exec "scrot ~/Pictures/Screenshots/%b%d:%H%M%S.png"
 # startup exec
 exec_always --no-startup-id compton --backend glx --vsync opengl --config ~/.config/compton.conf
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec_always --no-startup-id feh --bg-fill /home/$USER/dotfiles/wallpaper.jpg
+exec_always --no-startup-id feh --bg-tile /home/$USER/dotfiles/wallpaper.jpg
 
 exec /usr/bin/urxvt
 exec /usr/bin/chromium
