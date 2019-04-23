@@ -10,3 +10,4 @@ call plug#end()
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = 'latex'
 let g:livepreview_previewer = 'mupdf'
+let g:powerline_pycmd = 'py3'
