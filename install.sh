@@ -15,6 +15,7 @@ rm -rf /home/$USER/.config/compton.conf
 rm -rf /home/$USER/.config/i3
 rm -rf /home/$USER/.config/rofi
 rm -rf /home/$USER/.config/polybar
+rm -rf /home/$USER/.config/nvim
 rm -rf /home/$USER/helpers
 
 # make directory structure
@@ -24,12 +25,12 @@ mkdir -p /home/$USER/.config
 # create links for generic config items
 echo creating symlinks...
 ln -s $BASEDIR/bashrc /home/$USER/.bashrc
-ln -s $BASEDIR/vimrc /home/$USER/.vimrc
 ln -s $BASEDIR/xinitrc /home/$USER/.xinitrc
 ln -s $BASEDIR/Xresources /home/$USER/.Xresources
 ln -s $BASEDIR/helpers /home/$USER/helpers
 ln -s $BASEDIR/generic/compton.conf /home/$USER/.config/compton.conf
 ln -s $BASEDIR/generic/i3 /home/$USER/.config/i3
 ln -s $BASEDIR/generic/rofi /home/$USER/.config/rofi
+ln -s $BASEDIR/generic/nvim /home/$USER/.config/nvim
 ln -s $BASEDIR/$PROFILE/polybar /home/$USER/.config/polybar
 
