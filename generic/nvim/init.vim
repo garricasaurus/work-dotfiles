@@ -30,5 +30,7 @@ call plug#begin('~/.local/share/nvim/plugged')
    Plug 'lervag/vimtex'
    let g:tex_flavor = 'latex'
    let g:vimtex_view_method = 'mupdf'
+   let &rtp = '~/.local/share/nvim/plugged/vimtex,' . &rtp
+   let &rtp .= ',~/.local/share/nvim/plugged/vimtex/after'
 
 call plug#end()
