@@ -175,7 +175,7 @@ exec_always --no-startup-id compton --backend glx --vsync opengl --config ~/.con
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id feh --bg-tile /home/$USER/dotfiles/wallpaper.jpg
 
-exec /usr/bin/udiskie --no-notify &
+exec /usr/bin/udiskie --no-file-manager &
 exec /usr/bin/urxvt
 exec /usr/bin/chromium
 
