@@ -59,3 +59,5 @@ export SCM_CHECK=true
 
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
+
+alias acp="rsync --info=progress2"
