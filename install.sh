@@ -11,7 +11,6 @@ rm -rf /home/$USER/.bashrc
 rm -rf /home/$USER/.vimrc
 rm -rf /home/$USER/.xinitrc
 rm -rf /home/$USER/.Xresources
-rm -rf /home/$USER/.config/compton.conf
 rm -rf /home/$USER/.config/i3
 rm -rf /home/$USER/.config/rofi
 rm -rf /home/$USER/.config/polybar
@@ -28,7 +27,6 @@ ln -s $BASEDIR/bashrc /home/$USER/.bashrc
 ln -s $BASEDIR/xinitrc /home/$USER/.xinitrc
 ln -s $BASEDIR/Xresources /home/$USER/.Xresources
 ln -s $BASEDIR/helpers /home/$USER/helpers
-ln -s $BASEDIR/generic/compton.conf /home/$USER/.config/compton.conf
 ln -s $BASEDIR/generic/i3 /home/$USER/.config/i3
 ln -s $BASEDIR/generic/rofi /home/$USER/.config/rofi
 ln -s $BASEDIR/generic/nvim /home/$USER/.config/nvim
