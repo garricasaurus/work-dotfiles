@@ -174,7 +174,7 @@ bindsym --release Print exec "scrot ~/Pictures/Screenshots/%b%d:%H%M%S.png"
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id feh --bg-center /home/$USER/dotfiles/wallpaper.jpg
 
-exec /usr/bin/udiskie --no-file-manager &
+exec --no-startup-id /usr/bin/udiskie --no-file-manager &
 exec /usr/bin/urxvt
 exec /usr/bin/chromium
 
