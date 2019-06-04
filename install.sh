@@ -4,21 +4,32 @@ if [ -z "$BASEDIR" ] ; then
   exit 1  # fail
 fi
 
-# perform cleanup
+SUCKLESS=$HOME/suckless.org
+
 echo performing cleanup...
-rm -rf /home/$USER/.xinitrc
-rm -rf /home/$USER/.Xresources
-rm -rf /home/$USER/.config/nvim
-rm -rf /home/$USER/helpers
+rm -rf $HOME/.xinitrc
+rm -rf $HOME/.Xresources
+rm -rf $HOME/.config/nvim
+rm -rf $HOME/helpers
+rm -rf $SUCKLESS/dwm
+rm -rf $SUCKLESS/st
+rm -rf $SUCKLESS/dmenu
 
-# make directory structure
 echo creating directory...
-mkdir -p /home/$USER/.config
+mkdir -p $HOME/.config
 
-# create links for generic config items
 echo creating symlinks...
-ln -s $BASEDIR/xinitrc /home/$USER/.xinitrc
-ln -s $BASEDIR/Xresources /home/$USER/.Xresources
-ln -s $BASEDIR/helpers /home/$USER/helpers
-ln -s $BASEDIR/nvim /home/$USER/.config/nvim
+ln -sf $BASEDIR/xinitrc $HOME/.xinitrc
+ln -sf $BASEDIR/Xresources $HOME/.Xresources
+ln -sf $BASEDIR/helpers $HOME/helpers
+ln -sf $BASEDIR/nvim $HOME/.config/nvim
 
+echo cloning suckless.org programs...
+git clone https://git.suckless.org/dwm $SUCKLESS/dwm
+git clone https://git.suckless.org/st $SUCKLESS/st
+git clone https://git.suckless.org/dmenu $SUCKLESS/dmenu
+
+echo linking suckless.org configs...
+ln -sf $BASEDIR/dwm/config.h $SUCKLESS/dwm/config.h
+ln -sf $BASEDIR/st/config.h $SUCKLESS/st/config.h
+ln -sf $BASEDIR/dmenu/config.h $SUCKLESS/dmenu/config.h
