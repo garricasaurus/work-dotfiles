@@ -1,0 +1,5 @@
+dwm/*
+!dwm/config.h
+st/*
+!st/config.h
+
