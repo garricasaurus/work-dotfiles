@@ -33,4 +33,7 @@ call plug#begin('~/.local/share/nvim/plugged')
    let &rtp = '~/.local/share/nvim/plugged/vimtex,' . &rtp
    let &rtp .= ',~/.local/share/nvim/plugged/vimtex/after'
 
+   " golang
+   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 call plug#end()
