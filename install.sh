@@ -10,6 +10,7 @@ echo performing cleanup...
 rm -rf $HOME/.xinitrc
 rm -rf $HOME/.Xresources
 rm -rf $HOME/.config/nvim
+rm -rf $HOME/.config/fish
 rm -rf $HOME/helpers
 rm -rf $SL
 
@@ -21,6 +22,7 @@ ln -sf $BASEDIR/xinitrc $HOME/.xinitrc
 ln -sf $BASEDIR/Xresources $HOME/.Xresources
 ln -sf $BASEDIR/helpers $HOME/helpers
 ln -sf $BASEDIR/nvim $HOME/.config/nvim
+ln -sf $BASEDIR/fish $HOME/.config/fish
 
 echo creating sl apps...
 mkdir -p $SL
