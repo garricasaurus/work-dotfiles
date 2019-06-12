@@ -23,7 +23,7 @@ static const char col_full[]        = "#dcdccc";
 static const char *colors[][3]      = {
 	/*               fg         bg          border   */
 	[SchemeNorm] = { col_norm,  col_vdark,  col_dark },
-	[SchemeSel]  = { col_full,  col_mid,    col_mid  },
+	[SchemeSel]  = { col_full,  col_dark,    col_dark },
 };
 
 /* tagging */

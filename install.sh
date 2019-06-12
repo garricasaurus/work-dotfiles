@@ -29,19 +29,12 @@ mkdir -p $SL
 git clone https://git.suckless.org/dwm $SL/dwm
 git clone https://git.suckless.org/dmenu $SL/dmenu
 git clone https://git.suckless.org/st $SL/st
+git clone https://git.suckless.org/surf $SL/surf
 git clone https://bitbucket.org/dargzero/smart-status $SL/smart-status
+
+echo linking sl configs...
 ln -sf $BASEDIR/dwm/config.h $SL/dwm/config.h
 ln -sf $BASEDIR/dmenu/config.h $SL/dmenu/config.h
 ln -sf $BASEDIR/st/config.h $SL/st/config.h
+ln -sf $BASEDIR/surf/config.h $SL/surf/config.h
 
-echo installing sl apps...
-cd $SL/smart-status
-go build
-sudo mv smart-status /usr/local/bin
-cd $SL/dwm
-sudo make clean install
-cd $SL/dmenu
-sudo make clean install
-cd $SL/st
-sudo make clean install
-cd $BASEDIR
