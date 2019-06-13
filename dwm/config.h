@@ -69,8 +69,8 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon,
 
 static const char *termcmd[]  =      { "st", NULL };
 static const char *lockcmd[] =       { "physlock", "-d", NULL };
-static const char *volup[] =         { "smart-status", "pamixer", "--increase", "1", NULL };
-static const char *voldown[] =       { "smart-status", "pamixer", "--decrease", "1", NULL };
+static const char *volup[] =         { "smart-status", "pamixer", "--allow-boost", "--increase", "1", NULL };
+static const char *voldown[] =       { "smart-status", "pamixer", "--allow-boost", "--decrease", "1", NULL };
 static const char *volmute[] =       { "smart-status", "pamixer", "--toggle-mute", NULL };
 static const char *backlightup[] =   { "smart-status", "pkexec", "brillo", "-A", "1", NULL };
 static const char *backlightdown[] = { "smart-status", "pkexec", "brillo", "-U", "1", NULL };
