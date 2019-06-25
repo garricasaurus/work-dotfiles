@@ -70,6 +70,8 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon,
 	"-sb", col_dark, "-sf", col_full, NULL };
 
 static const char *termcmd[]  =      { "st", NULL };
+static const char *webcmd[] =        { "chromium", NULL };
+static const char *privwebcmd[] =    { "chromium", "-incognito", NULL };
 static const char *lockcmd[] =       { "physlock", "-d", NULL };
 static const char *volup[] =         { "smart-status", "pamixer", "--allow-boost", "--increase", "1", NULL };
 static const char *voldown[] =       { "smart-status", "pamixer", "--allow-boost", "--decrease", "1", NULL };
@@ -81,6 +83,8 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = webcmd } },
+	{ MODKEY|ShiftMask|ControlMask, XK_w,      spawn,          {.v = privwebcmd } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_Left,   focusstack,     {.i = +1 } },
