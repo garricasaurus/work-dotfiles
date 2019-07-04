@@ -1,3 +1,5 @@
+#!/bin/sh
+
 BASEDIR="`dirname \"$0\"`"              # relative
 BASEDIR="`( cd \"$BASEDIR\" && pwd )`"  # absolutized and normalized
 if [ -z "$BASEDIR" ] ; then
