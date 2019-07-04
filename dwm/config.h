@@ -69,46 +69,50 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon,
 	"-fn", dmenufont, "-nb", col_vdark, "-nf", col_norm,
 	"-sb", col_dark, "-sf", col_full, NULL };
 
-static const char *termcmd[]  =      { "st", NULL };
-static const char *webcmd[] =        { "chromium", NULL };
-static const char *privwebcmd[] =    { "chromium", "-incognito", NULL };
-static const char *lockcmd[] =       { "physlock", "-d", NULL };
-static const char *volup[] =         { "smart-status", "pamixer", "--allow-boost", "--increase", "1", NULL };
-static const char *voldown[] =       { "smart-status", "pamixer", "--allow-boost", "--decrease", "1", NULL };
-static const char *volmute[] =       { "smart-status", "pamixer", "--toggle-mute", NULL };
-static const char *backlightup[] =   { "smart-status", "pkexec", "brillo", "-A", "1", NULL };
-static const char *backlightdown[] = { "smart-status", "pkexec", "brillo", "-U", "1", NULL };
+static const char *termcmd[]        = { "st", NULL };
+static const char *webcmd[]         = { "chromium", NULL };
+static const char *privwebcmd[]     = { "chromium", "-incognito", NULL };
+static const char *lockcmd[]        = { "physlock", "-d", NULL };
+static const char *volup_sm[]       = { "smart-status", "pamixer", "--allow-boost", "--increase", "1", NULL };
+static const char *voldown_sm[]     = { "smart-status", "pamixer", "--allow-boost", "--decrease", "1", NULL };
+static const char *volup_lg[]       = { "smart-status", "pamixer", "--allow-boost", "--increase", "10", NULL };
+static const char *voldown_lg[]     = { "smart-status", "pamixer", "--allow-boost", "--decrease", "10", NULL };
+static const char *volmute[]        = { "smart-status", "pamixer", "--toggle-mute", NULL };
+static const char *brup_sm[]        = { "smart-status", "pkexec", "brillo", "-A", "1", NULL };
+static const char *brdown_sm[]      = { "smart-status", "pkexec", "brillo", "-U", "1", NULL };
+static const char *brup_lg[]        = { "smart-status", "pkexec", "brillo", "-A", "10", NULL };
+static const char *brdown_lg[]      = { "smart-status", "pkexec", "brillo", "-U", "10", NULL };
 
 static Key keys[] = {
-	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = webcmd } },
-	{ MODKEY|ShiftMask|ControlMask, XK_w,      spawn,          {.v = privwebcmd } },
-	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_Left,   focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_Right,  focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_Up,     incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_Down,   incnmaster,     {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_Left,   setmfact,       {.f = -0.05} },
-	{ MODKEY|ShiftMask,             XK_Right,  setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },
-	{ MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[4]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	/* modifier                     key           function        argument */
+	{ MODKEY,                       XK_p,         spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,             XK_KP_Enter,  spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_w,         spawn,          {.v = webcmd } },
+	{ MODKEY|ShiftMask|ControlMask, XK_w,         spawn,          {.v = privwebcmd } },
+	{ MODKEY|ShiftMask,             XK_l,         spawn,          {.v = lockcmd } },
+	{ MODKEY,                       XK_b,         togglebar,      {0} },
+	{ MODKEY,                       XK_Left,      focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_Right,     focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_Up,        incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_Down,      incnmaster,     {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_Left,      setmfact,       {.f = -0.05} },
+	{ MODKEY|ShiftMask,             XK_Right,     setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_KP_Enter,  zoom,           {0} },
+	{ MODKEY,                       XK_Tab,       view,           {0} },
+	{ MODKEY|ShiftMask,             XK_c,         killclient,     {0} },
+	{ MODKEY,                       XK_t,         setlayout,      {.v = &layouts[0]} },
+	{ MODKEY,                       XK_f,         setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_m,         setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_u,         setlayout,      {.v = &layouts[3]} },
+	{ MODKEY|ShiftMask,             XK_u,         setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                       XK_space,     setlayout,      {0} },
+	{ MODKEY|ShiftMask,             XK_space,     togglefloating, {0} },
+	{ MODKEY,                       XK_0,         view,           {.ui = ~0 } },
+	{ MODKEY|ShiftMask,             XK_0,         tag,            {.ui = ~0 } },
+	{ MODKEY,                       XK_comma,     focusmon,       {.i = -1 } },
+	{ MODKEY,                       XK_period,    focusmon,       {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_comma,     tagmon,         {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_period,    tagmon,         {.i = +1 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -120,11 +124,16 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	/* Media keys */
-	{ 0, XF86XK_AudioRaiseVolume,              spawn,          {.v = volup } },
-	{ 0, XF86XK_AudioLowerVolume,              spawn,          {.v = voldown } },
+	{ 0, XF86XK_AudioRaiseVolume,              spawn,          {.v = volup_sm } },
+	{ 0, XF86XK_AudioLowerVolume,              spawn,          {.v = voldown_sm } },
+	{ ShiftMask, XF86XK_AudioRaiseVolume,      spawn,          {.v = volup_lg } },
+	{ ShiftMask, XF86XK_AudioLowerVolume,      spawn,          {.v = voldown_lg } },
 	{ 0, XF86XK_AudioMute,                     spawn,          {.v = volmute } },
-	{ 0, XF86XK_MonBrightnessUp,               spawn,          {.v = backlightup } },
-	{ 0, XF86XK_MonBrightnessDown,             spawn,          {.v = backlightdown } },
+	{ 0, XF86XK_MonBrightnessUp,               spawn,          {.v = brup_sm } },
+	{ 0, XF86XK_MonBrightnessDown,             spawn,          {.v = brdown_sm } },
+	{ ShiftMask, XF86XK_MonBrightnessUp,       spawn,          {.v = brup_lg } },
+	{ ShiftMask, XF86XK_MonBrightnessDown,     spawn,          {.v = brdown_lg } },
+
 
 };
 
