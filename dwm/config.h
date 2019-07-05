@@ -87,6 +87,7 @@ static Key keys[] = {
 	/* modifier                     key           function        argument */
 	{ MODKEY,                       XK_p,         spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_KP_Enter,  spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_Return,    spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_w,         spawn,          {.v = webcmd } },
 	{ MODKEY|ShiftMask|ControlMask, XK_w,         spawn,          {.v = privwebcmd } },
 	{ MODKEY|ShiftMask,             XK_l,         spawn,          {.v = lockcmd } },
@@ -98,6 +99,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Left,      setmfact,       {.f = -0.05} },
 	{ MODKEY|ShiftMask,             XK_Right,     setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_KP_Enter,  zoom,           {0} },
+	{ MODKEY,                       XK_Return,    zoom,           {0} },
 	{ MODKEY,                       XK_Tab,       view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,         killclient,     {0} },
 	{ MODKEY,                       XK_t,         setlayout,      {.v = &layouts[0]} },
