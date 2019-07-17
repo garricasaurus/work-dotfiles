@@ -73,15 +73,6 @@ static const char *termcmd[]        = { "st", NULL };
 static const char *webcmd[]         = { "chromium", NULL };
 static const char *privwebcmd[]     = { "chromium", "--incognito", NULL };
 static const char *lockcmd[]        = { "physlock", "-d", NULL };
-static const char *volup_sm[]       = { "dwm-bar-helper.sh", "volume", "pamixer --allow-boost --increase 1", NULL };
-static const char *voldown_sm[]     = { "dwm-bar-helper.sh", "volume", "pamixer --allow-boost --decrease 1", NULL };
-static const char *volup_lg[]       = { "dwm-bar-helper.sh", "volume", "pamixer --allow-boost --increase 10", NULL };
-static const char *voldown_lg[]     = { "dwm-bar-helper.sh", "volume", "pamixer --allow-boost --decrease 10", NULL };
-static const char *volmute[]        = { "dwm-bar-helper.sh", "volume", "pamixer --toggle-mute", NULL };
-static const char *brup_sm[]        = { "dwm-bar-helper.sh", "brightness", "pkexec brillo -A 1", NULL };
-static const char *brdown_sm[]      = { "dwm-bar-helper.sh", "brightness", "pkexec brillo -U 1", NULL };
-static const char *brup_lg[]        = { "dwm-bar-helper.sh", "brightness", "pkexec brillo -A 10", NULL };
-static const char *brdown_lg[]      = { "dwm-bar-helper.sh", "brightness", "pkexec brillo -U 10", NULL };
 
 static Key keys[] = {
 	/* modifier                     key           function        argument */
@@ -126,17 +117,18 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	/* Media keys */
-	{ 0, XF86XK_AudioRaiseVolume,              spawn,          {.v = volup_sm } },
-	{ 0, XF86XK_AudioLowerVolume,              spawn,          {.v = voldown_sm } },
-	{ ShiftMask, XF86XK_AudioRaiseVolume,      spawn,          {.v = volup_lg } },
-	{ ShiftMask, XF86XK_AudioLowerVolume,      spawn,          {.v = voldown_lg } },
-	{ 0, XF86XK_AudioMute,                     spawn,          {.v = volmute } },
-	{ 0, XF86XK_MonBrightnessUp,               spawn,          {.v = brup_sm } },
-	{ 0, XF86XK_MonBrightnessDown,             spawn,          {.v = brdown_sm } },
-	{ ShiftMask, XF86XK_MonBrightnessUp,       spawn,          {.v = brup_lg } },
-	{ ShiftMask, XF86XK_MonBrightnessDown,     spawn,          {.v = brdown_lg } },
-
-
+	{ 0,           XF86XK_AudioRaiseVolume,      spawn,          SHCMD("pamixer --allow-boost --increase 1; smart-status --refresh=volume") },
+	{ 0,           XF86XK_AudioLowerVolume,      spawn,          SHCMD("pamixer --allow-boost --decrease 1; smart-status --refresh=volume") },
+	{ ShiftMask,   XF86XK_AudioRaiseVolume,      spawn,          SHCMD("pamixer --allow-boost --increase 10; smart-status --refresh=volume") },
+	{ ShiftMask,   XF86XK_AudioLowerVolume,      spawn,          SHCMD("pamixer --allow-boost --decrease 10; smart-status --refresh=volume") },
+	{ 0,           XF86XK_AudioMute,             spawn,          SHCMD("pamixer --toggle-mute; smart-status --refresh=volume") },
+	{ 0,           XF86XK_MonBrightnessUp,       spawn,          SHCMD("pkexec brillo -A 1; smart-status --refresh=brightness") },
+	{ 0,           XF86XK_MonBrightnessDown,     spawn,          SHCMD("pkexec brillo -U 1; smart-status --refresh=brightness") },
+	{ ShiftMask,   XF86XK_MonBrightnessUp,       spawn,          SHCMD("pkexec brillo -A 10; smart-status --refresh=brightness") },
+	{ ShiftMask,   XF86XK_MonBrightnessDown,     spawn,          SHCMD("pkexec brillo -U 10; smart-status --refresh=brightness") },
+	{ 0,           XK_Print,                     spawn,          SHCMD("sleep 0.2s; scrot --quality 100 -e 'mv $f ~/Screenshots'") },
+	{ ShiftMask,   XK_Print,                     spawn,          SHCMD("sleep 0.2s; scrot --focused --quality 100 -e 'mv $f ~/Screenshots'") },
+	{ ControlMask, XK_Print,                     spawn,          SHCMD("sleep 0.2s; scrot --select --quality 100 -e 'mv $f ~/Screenshots'") },
 };
 
 /* button definitions */
