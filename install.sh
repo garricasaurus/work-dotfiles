@@ -32,7 +32,7 @@ git clone https://git.suckless.org/dwm $SL/dwm
 git clone https://git.suckless.org/dmenu $SL/dmenu
 git clone https://git.suckless.org/st $SL/st
 git clone https://git.suckless.org/surf $SL/surf
-git clone https://bitbucket.org/dargzero/smart-status $SL/smart-status
+git clone https://bitbucket.org/dargzero/okki-status $SL/okki-status
 
 echo linking sl configs...
 ln -sf $BASEDIR/dwm/config.h $SL/dwm/config.h
