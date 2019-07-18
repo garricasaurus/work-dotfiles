@@ -38,6 +38,6 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export AWT_TOOLKIT=MToolkit
 
 exec feh --bg-center ~/dotfiles/wallpaper.jpg &
-exec /usr/local/bin/smart-status &
+exec /usr/local/bin/okki-status &
 
 exec dwm
