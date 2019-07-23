@@ -1,0 +1,12 @@
+ # host and port
+set connect.host 192.168.0.100
+set connect.port 9091
+set connect.user garric
+set connect.password password
+
+# poll frequency (seconds)
+set tui.poll 10
+
+# default columns in torrent list
+set columns.torrents name %dn eta ratio rate-up rate-down
+
