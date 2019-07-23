@@ -1,8 +1,10 @@
  # host and port
 set connect.host 192.168.0.100
 set connect.port 9091
-set connect.user garric
-set connect.password password
+
+# creds
+set connect.user [user]
+set connect.password [pass]
 
 # poll frequency (seconds)
 set tui.poll 10

@@ -17,16 +17,17 @@ rm -rf $HOME/.config/stig
 rm -rf $HOME/helpers
 rm -rf $SL
 
-echo creating directory...
+echo creating directories...
 mkdir -p $HOME/.config
+mkdir -p $HOME/.config/stig
 
-echo creating symlinks...
+echo creating configs...
 ln -sf $BASEDIR/xinitrc $HOME/.xinitrc
 ln -sf $BASEDIR/Xresources $HOME/.Xresources
 ln -sf $BASEDIR/helpers $HOME/helpers
 ln -sf $BASEDIR/nvim $HOME/.config/nvim
 ln -sf $BASEDIR/fish $HOME/.config/fish
-ln -sf $BASEDIR/stig $HOME/.config/stig
+cp $BASEDIR/stig/rc $HOME/.config/stig
 
 echo creating sl apps...
 mkdir -p $SL
@@ -42,3 +43,4 @@ ln -sf $BASEDIR/dmenu/config.h $SL/dmenu/config.h
 ln -sf $BASEDIR/st/config.h $SL/st/config.h
 ln -sf $BASEDIR/surf/config.h $SL/surf/config.h
 
+echo ready for manual steps.
