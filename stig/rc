@@ -1,6 +1,13 @@
- # host and port
+# host and port
 set connect.host 192.168.0.100
 set connect.port 9091
+
+# important: create ./creds.conf containing transmission credentials:
+   # set connect.user username
+   # set connect.password password
+
+# import creds.conf
+rc creds.conf
 
 # poll frequency (seconds)
 set tui.poll 10
