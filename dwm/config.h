@@ -70,8 +70,8 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon,
 	"-sb", col_dark, "-sf", col_full, NULL };
 
 static const char *termcmd[]        = { "st", NULL };
-static const char *webcmd[]         = { "chromium", NULL };
-static const char *privwebcmd[]     = { "chromium", "--incognito", NULL };
+static const char *webcmd[]         = { "min", NULL };
+static const char *privwebcmd[]     = { "min", "--incognito", NULL };
 static const char *lockcmd[]        = { "physlock", "-d", NULL };
 
 static Key keys[] = {
