@@ -66,7 +66,7 @@ rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 
 ### Install base packages:
 ```
-pacstrap /mnt base base-devel linux linux-firmware btrfs-progs neovim git sudo efibootmgr wpa_supplicant dialog iw go terminus-font networkmanager
+pacstrap /mnt base base-devel linux linux-firmware btrfs-progs vim git sudo efibootmgr wpa_supplicant dialog iw go terminus-font networkmanager
 ```
 
 ### Configure base system:
@@ -113,7 +113,7 @@ passwd      # root password
 ```
 useradd -m -g users -G wheel <username>
 passwd <username>
-echo '<username> ALL=(ALL) ALL' > /etc/sudoers.d/<username>
+echo '<username> ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/<username>
 ```
 
 #### init
