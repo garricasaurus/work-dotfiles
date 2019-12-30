@@ -5,7 +5,7 @@
 ### Connect wifi (optional):
 ```
 wpa_passphrase <ssid> <password> >> /etc/wpa_supplicant/<wifi>.conf
-wpa_supplicant -B -i wlp59s0 -c /etc/wpa_supplicant/<wifi>.conf
+wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/<wifi>.conf
 dhcpcd
 ping archlinux.org
 ```
@@ -66,7 +66,7 @@ rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 
 ### Install base packages:
 ```
-pacstrap /mnt base base-devel btrfs-progs neovim git sudo efibootmgr wpa_supplicant dialog iw go terminus-font networkmanager
+pacstrap /mnt base base-devel linux linux-firmware btrfs-progs neovim git sudo efibootmgr wpa_supplicant dialog iw go terminus-font networkmanager
 ```
 
 ### Configure base system:
