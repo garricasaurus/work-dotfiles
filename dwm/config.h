@@ -49,7 +49,7 @@ static const Layout layouts[] = {
 	{ "",      NULL },    /* no layout function means floating behavior */
 	{ "",      monocle },
 	{ "",      centeredmaster },
-	{ "",       centeredfloatingmaster },
+	{ "",      centeredfloatingmaster },
 };
 
 /* key definitions */
