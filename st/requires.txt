@@ -1,0 +1,2 @@
+https://st.suckless.org/patches/scrollback/ (base + mouse + altscreen)
+Font: Noto Sans
