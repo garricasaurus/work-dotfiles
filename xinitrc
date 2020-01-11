@@ -36,7 +36,16 @@ fi
 export _JAVA_AWT_WM_NONREPARENTING=1 
 export AWT_TOOLKIT=MToolkit
 
-exec feh --bg-center ~/dotfiles/wallpaper.jpg &
+# set wallpaper
+resolution=`xrandr | grep '*' | grep -Po '([0-9]+x[0-9]+)'`
+wallpaperdir=$HOME/dotfiles/wallpapers
+wallpaper=wallpaper_$resolution.jpg
+if [ ! -f "$wallpaperdir/$wallpaper" ]; then
+	wallpaper="$wallpaperdir/wallpaper_1920x1080.jpg"
+fi
+exec feh --bg-fill "$wallpaperdir/$wallpaper" &
+
+# status bar
 exec /usr/local/bin/okki-status &
 
 exec dwm

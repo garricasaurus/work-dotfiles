@@ -1,2 +1,3 @@
 https://st.suckless.org/patches/scrollback/ (base + mouse + altscreen)
+https://st.suckless.org/patches/nordtheme/
 Font: Noto Sans
