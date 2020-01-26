@@ -1,6 +1,7 @@
 #!/bin/sh
 
-xrandr --auto
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+autorandr --change
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -37,13 +38,12 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export AWT_TOOLKIT=MToolkit
 
 # set wallpaper
-resolution=`xrandr | grep '*' | grep -Po '([0-9]+x[0-9]+)'`
+resolution=`xrandr | grep '*' | grep -Po '([0-9]+x[0-9]+)' | head -1`
 wallpaperdir=$HOME/dotfiles/wallpapers
-wallpaper=wallpaper_$resolution.jpg
-if [ ! -f "$wallpaperdir/$wallpaper" ]; then
-	wallpaper="$wallpaperdir/wallpaper_1920x1080.jpg"
-fi
-exec feh --bg-fill "$wallpaperdir/$wallpaper" &
+wallpaper="$wallpaperdir/wallpaper_$resolution.jpg"
+echo resolution=$resolution > ~/xinit.log
+echo wallaper=$wallpaper >> ~/xinit.log
+exec feh --bg-fill "$wallpaper" &
 
 # status bar
 exec /usr/local/bin/okki-status &
