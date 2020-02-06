@@ -1,20 +1,27 @@
-# Create a Win10 bootable usb
+# Create UEFI Win10 bootable usb
 
 ### Pre-requisites:
    * 8GB UDB
-   * NTFS partition
-   * ms-sys, rsync
+   * 7zip
 
+### Partitioning
+   * partition table: gpt
+   * partition 1: primary, 2GB+, FAT32
+   * partition 2: primary, 4GB+, NTFS
+
+
+#### Copy files
 
 ```
+mkdir -p /mnt/win-boot
+mount /dev/sd[X]1 /mnt/win-boot
+
 mkdir -p /mnt/win
-mount -t udf loop,ro,unhide [win10.iso] /mnt/win
+mount /dev/sd[X]2 /mnt/win
 
-mkdir -p /mnt/usb
-mount /dev/sd[Xn] /mnt/usb
+7z x -x!sources/ [win.iso] -o/mnt/win-boot/
+7z x -i!sources/boot.wim [win.iso] -o/mnt/win-boot/
+7z x -i!sources/ [win.iso] -o/mnt/win/
 
-rsync -avrP /mnt/win/* /mnt/usb
-ms-sys -7 /dev/sd[X]
 sync
-umount /mnt/usb
 ```
