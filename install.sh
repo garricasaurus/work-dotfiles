@@ -11,7 +11,6 @@ SL=$HOME/sl
 echo performing cleanup...
 rm -rf $HOME/.xinitrc
 rm -rf $HOME/.Xresources
-rm -rf $HOME/.config/fish
 rm -rf $HOME/helpers
 rm -rf $SL
 
@@ -22,7 +21,6 @@ echo creating configs...
 ln -sf $BASEDIR/xinitrc $HOME/.xinitrc
 ln -sf $BASEDIR/Xresources $HOME/.Xresources
 ln -sf $BASEDIR/helpers $HOME/helpers
-ln -sf $BASEDIR/fish $HOME/.config/fish
 
 echo creating sl apps...
 mkdir -p $SL
@@ -38,4 +36,5 @@ ln -sf $BASEDIR/st/config.h $SL/st/config.h
 
 echo "please proceed with manual steps:"
 echo "  - set fish as default shell"
+echo "  - install omf"
 echo "  - patch and build sl apps"
