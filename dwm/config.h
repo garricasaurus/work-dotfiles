@@ -70,8 +70,8 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon,
 	"-sb", col_dark, "-sf", col_full, NULL };
 
 static const char *termcmd[]        = { "st", NULL };
-static const char *webcmd[]         = { "firefox", NULL };
-static const char *privwebcmd[]     = { "firefox", "-private", NULL };
+static const char *webcmd[]         = { "brave", NULL };
+static const char *privwebcmd[]     = { "brave", "--incognito", NULL };
 static const char *lockcmd[]        = { "physlock", "-d", NULL };
 
 static Key keys[] = {
@@ -128,8 +128,8 @@ static Key keys[] = {
 	{ 0,           XF86XK_AudioMute,             spawn,          SHCMD("pamixer --toggle-mute; okki-status --refresh=volume") },
 	{ 0,           XF86XK_MonBrightnessUp,       spawn,          SHCMD("pkexec brillo -A 1; okki-status --refresh=brightness") },
 	{ 0,           XF86XK_MonBrightnessDown,     spawn,          SHCMD("pkexec brillo -U 1; okki-status --refresh=brightness") },
-	{ ShiftMask,   XF86XK_MonBrightnessUp,       spawn,          SHCMD("pkexec brillo -A 10; okki-status --refresh=brightness") },
-	{ ShiftMask,   XF86XK_MonBrightnessDown,     spawn,          SHCMD("pkexec brillo -U 10; okki-status --refresh=brightness") },
+	{ ShiftMask,   XF86XK_MonBrightnessUp,       spawn,          SHCMD("pkexec brillo -A 10 -u 500; okki-status --refresh=brightness") },
+	{ ShiftMask,   XF86XK_MonBrightnessDown,     spawn,          SHCMD("pkexec brillo -U 10 -u 500; okki-status --refresh=brightness") },
 	{ 0,           XK_Print,                     spawn,          SHCMD("sleep 0.2s; scrot --quality 100 -e 'mv $f ~/Screenshots'") },
 	{ ShiftMask,   XK_Print,                     spawn,          SHCMD("sleep 0.2s; scrot --focused --quality 100 -e 'mv $f ~/Screenshots'") },
 	{ ControlMask, XK_Print,                     spawn,          SHCMD("sleep 0.2s; scrot --select --quality 100 -e 'mv $f ~/Screenshots'") },
