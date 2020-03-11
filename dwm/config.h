@@ -5,25 +5,28 @@
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 10;       /* snap pixel */
-static const unsigned int gappx     = 10;       /* gap pixel between windows */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = {
-	"Noto Sans:size=11",
-	"Font Awesome 5 Free Regular-11",
-	"Font Awesome 5 Free Solid-11"
+	"Noto Sans Display:size=11",
 };
-static const char dmenufont[]       = "Noto Sans:size=11";
+static const char dmenufont[]       = "Noto Sans Display:size=11";
 
-static const char col_vdark[]       = "#0d0e0f";
-static const char col_dark[]        = "#1e1f23";
-static const char col_mid[]         = "#464852";
-static const char col_norm[]        = "#737786";
-static const char col_full[]        = "#dcdccc";
+static const char col_gray[]  = "#373737";
+static const char col_blue[]  = "#005b96";
+static const char col_black[] = "#000000";
+static const char col_white[] = "#fefefe";
+
 static const char *colors[][3]      = {
-	/*               fg         bg          border   */
-	[SchemeNorm] = { col_norm,  col_vdark,  col_dark },
-	[SchemeSel]  = { col_full,  col_dark,   col_dark },
+	/*                        fg         bg      border   */
+	[SchemeNorm]      = { col_white, col_gray, col_black },
+        [SchemeSel]       = { col_white, col_gray, col_black },
+        [SchemeStatus]    = { col_white, col_gray, col_black },
+        [SchemeTagsSel]   = { col_white, col_blue, col_black },
+        [SchemeTagsNorm]  = { col_white, col_gray, col_black },
+        [SchemeInfoSel]   = { col_white, col_gray, col_black },
+        [SchemeInfoNorm]  = { col_white, col_gray, col_black },
+
 };
 
 /* tagging */
@@ -65,8 +68,8 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon,
-	"-fn", dmenufont, "-nb", col_vdark, "-nf", col_norm,
-	"-sb", col_dark, "-sf", col_full, NULL };
+	"-fn", dmenufont, "-nb", col_gray, "-nf", col_white,
+	"-sb", col_blue, "-sf", col_white, NULL };
 
 static const char *termcmd[]        = { "st", NULL };
 static const char *webcmd[]         = { "brave", NULL };
