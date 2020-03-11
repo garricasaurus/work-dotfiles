@@ -1,2 +1,2 @@
 https://dwm.suckless.org/patches/centeredmaster/
-https://dwm.suckless.org/patches/uselessgap/		
+https://dwm.suckless.org/patches/push/

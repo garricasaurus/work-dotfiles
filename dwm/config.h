@@ -8,7 +8,7 @@ static const unsigned int snap      = 10;       /* snap pixel */
 static const unsigned int gappx     = 10;       /* gap pixel between windows */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { 
+static const char *fonts[]          = {
 	"Noto Sans:size=11",
 	"Font Awesome 5 Free Regular-11",
 	"Font Awesome 5 Free Solid-11"
@@ -45,11 +45,10 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "",      tile },    /* first entry is default */
-	{ "",      NULL },    /* no layout function means floating behavior */
-	{ "",      monocle },
-	{ "",      centeredmaster },
-	{ "",      centeredfloatingmaster },
+	{ "[]=",      tile },    /* first entry is default */
+	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ "[M]",      monocle },
+	{ "|M|",      centeredmaster },
 };
 
 /* key definitions */
@@ -65,7 +64,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, 
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon,
 	"-fn", dmenufont, "-nb", col_vdark, "-nf", col_norm,
 	"-sb", col_dark, "-sf", col_full, NULL };
 
@@ -86,8 +85,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_b,         togglebar,      {0} },
 	{ MODKEY,                       XK_Left,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_Right,     focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_Up,        incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_Down,      incnmaster,     {.i = -1 } },
+	{ MODKEY,			XK_Up,        pushup,         {0} },
+	{ MODKEY|ControlMask,           XK_Up,        incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_Down,      pushdown,       {0} },
+	{ MODKEY|ControlMask,           XK_Down,      incnmaster,     {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_Left,      setmfact,       {.f = -0.05} },
 	{ MODKEY|ShiftMask,             XK_Right,     setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_KP_Enter,  zoom,           {0} },
@@ -98,7 +99,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_f,         setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,         setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_u,         setlayout,      {.v = &layouts[3]} },
-	{ MODKEY|ShiftMask,             XK_u,         setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_space,     setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,     togglefloating, {0} },
 	{ MODKEY,                       XK_0,         view,           {.ui = ~0 } },
@@ -107,9 +107,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period,    focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,     tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period,    tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_minus,     setgaps,        {.i = -1 } },
-	{ MODKEY,                       XK_equal,     setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_equal,     setgaps,        {.i = 0  } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
