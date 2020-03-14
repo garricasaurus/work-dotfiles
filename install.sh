@@ -6,38 +6,76 @@ if [ -z "$BASEDIR" ] ; then
   exit 1  # fail
 fi
 
-SL=$HOME/sl
+install() {
+	echo "  -> $1"
+	sudo pacman --noconfirm -Sy $1 > /dev/null
+}
 
-echo " => xinitrc"  
-rm -f $HOME/.xinitrc
-ln -sf $BASEDIR/xinitrc $HOME/.xinitrc
+install_aur() {
+	echo "  -> $1 (AUR)"
+	yay --noconfirm -Sy $1 > /dev/null
+}
 
-echo " => Xresources"
-rm -f $HOME/.Xresources
-ln -sf $BASEDIR/Xresources $HOME/.Xresources
+install_sl() {
+	echo "  -> $1"
+	cd "$BASEDIR/$1" > /dev/null
+	sudo make clean install > /dev/null
+}
 
-echo " => helpers"
-rm -rf $HOME/helpers
-ln -sf $BASEDIR/helpers $HOME/helpers
+link_resource() {
+	echo "  -> linking $BASEDIR/$1 -> $HOME/$2"
+	rm -f "$HOME/$2" > /dev/null
+	ln -sf "$BASEDIR/$1" "$HOME/$2" > /dev/null
+}
 
-mkdir -p $SL
+link_config() {
+	echo "  -> linking config $BASEDIR/$1 -> $HOME/.config/$1"
+	rm -rf "$HOME/.config/$1" > /dev/null
+	mkdir -p "$HOME/.config" > /dev/null
+	ln -sf "$BASEDIR/$1" "$HOME/.config/$1" > /dev/null
+}
 
-echo " => dwm"
-git clone https://git.suckless.org/dwm $SL/dwm
-ln -sf $BASEDIR/dwm/config.h $SL/dwm/config.h
+echo " => installing packages"
+install git
+install go
+install noto-fonts
+install pulseaudio 
+install pulseaudio-alsa 
+install pulseaudio-bluetooth 
+install pulseaudio-jack 
+install pamixer 
+install fish
 
-echo " => dmenu"
-git clone https://git.suckless.org/dmenu $SL/dmenu
-ln -sf $BASEDIR/dmenu/config.h $SL/dmenu/config.h
+echo "  -> yay"
+{
+	rm -rf $HOME/yay
+	git clone https://aur.archlinux.org/yay.git $HOME/yay
+	cd $HOME/yay
+	makepkg -si
+	cd $BASEDIR
+	rm -rf $HOME/yay
+} > /dev/null
+install_aur brillo
+
+echo " => oh-my-fish"
+curl -L https://get.oh-my.fish | fish
+
+echo " => configuration files" 
+link_resource "xinitrc" ".xinitrc"
+link_resource "Xresources" ".Xresources"
+link_resource "helpers" "helpers"
+link_config "alacritty"
+
+echo " => suckless.org"
+install_sl dwm
+install_sl dmenu
 
 echo " => okki status"
-git clone https://github.com/dargzero/okki-status $SL/okki-status
+{
+	rm -rf $HOME/okki-status
+	git clone https://github.com/dargzero/okki-status $HOME/okki-status
+	cd $HOME/okki-status
+	go build
+	sudo mv okki-status /usr/local/bin/okki-status
+} > /dev/null
 
-echo " => alacritty"
-mkdir -p $HOME/.config
-ln -sf $BASEDIR/alacritty $HOME/.config/alacritty
-
-echo " => proceed with manual steps"
-echo "  * set fish as default shell"
-echo "  * install omf"
-echo "  * patch and build sl apps"
