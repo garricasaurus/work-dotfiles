@@ -2,3 +2,4 @@ https://dwm.suckless.org/patches/centeredmaster/
 https://dwm.suckless.org/patches/push/
 https://dwm.suckless.org/patches/colorbar/
 https://dwm.suckless.org/patches/activetagindicatorbar/
+https://dwm.suckless.org/patches/onlyquitonempty/

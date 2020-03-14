@@ -8,33 +8,36 @@ fi
 
 SL=$HOME/sl
 
-echo performing cleanup...
-rm -rf $HOME/.xinitrc
-rm -rf $HOME/.Xresources
-rm -rf $HOME/helpers
-rm -rf $SL
-
-echo creating directories...
-mkdir -p $HOME/.config
-
-echo creating configs...
+echo " => xinitrc"  
+rm -f $HOME/.xinitrc
 ln -sf $BASEDIR/xinitrc $HOME/.xinitrc
+
+echo " => Xresources"
+rm -f $HOME/.Xresources
 ln -sf $BASEDIR/Xresources $HOME/.Xresources
+
+echo " => helpers"
+rm -rf $HOME/helpers
 ln -sf $BASEDIR/helpers $HOME/helpers
 
-echo creating sl apps...
 mkdir -p $SL
+
+echo " => dwm"
 git clone https://git.suckless.org/dwm $SL/dwm
+ln -sf $BASEDIR/dwm/config.h $SL/dwm/config.h
+
+echo " => dmenu"
 git clone https://git.suckless.org/dmenu $SL/dmenu
-git clone https://git.suckless.org/st $SL/st
+ln -sf $BASEDIR/dmenu/config.h $SL/dmenu/config.h
+
+echo " => okki status"
 git clone https://github.com/dargzero/okki-status $SL/okki-status
 
-echo linking sl configs...
-ln -sf $BASEDIR/dwm/config.h $SL/dwm/config.h
-ln -sf $BASEDIR/dmenu/config.h $SL/dmenu/config.h
-ln -sf $BASEDIR/st/config.h $SL/st/config.h
+echo " => alacritty"
+mkdir -p $HOME/.config
+ln -sf $BASEDIR/alacritty $HOME/.config/alacritty
 
-echo "please proceed with manual steps:"
-echo "  - set fish as default shell"
-echo "  - install omf"
-echo "  - patch and build sl apps"
+echo " => proceed with manual steps"
+echo "  * set fish as default shell"
+echo "  * install omf"
+echo "  * patch and build sl apps"

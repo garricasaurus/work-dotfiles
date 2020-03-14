@@ -29,6 +29,9 @@ static const char *colors[][3]      = {
 
 };
 
+/* quitting */
+static const int EMPTY_WINDOW_COUNT = 2;
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5" };
 
