@@ -74,7 +74,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon,
 	"-fn", dmenufont, "-nb", col_gray, "-nf", col_white,
 	"-sb", col_blue, "-sf", col_white, NULL };
 
-static const char *termcmd[]        = { "st", NULL };
+static const char *termcmd[]        = { "alacritty", NULL };
 static const char *webcmd[]         = { "brave", NULL };
 static const char *privwebcmd[]     = { "brave", "--incognito", NULL };
 static const char *lockcmd[]        = { "physlock", "-d", NULL };
