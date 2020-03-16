@@ -41,7 +41,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "demoapp",  NULL,       NULL,       1 << 8,       0,           -1 },	
 };
 
 /* layout(s) */
@@ -75,8 +75,8 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon,
 	"-sb", col_blue, "-sf", col_white, NULL };
 
 static const char *termcmd[]        = { "alacritty", NULL };
-static const char *webcmd[]         = { "brave", NULL };
-static const char *privwebcmd[]     = { "brave", "--incognito", NULL };
+static const char *webcmd[]         = { "firefox", NULL };
+static const char *privwebcmd[]     = { "firefox", "-private", NULL };
 static const char *lockcmd[]        = { "physlock", "-d", NULL };
 
 static Key keys[] = {
