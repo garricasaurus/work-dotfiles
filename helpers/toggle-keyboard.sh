@@ -8,6 +8,9 @@ case "$CURRENT" in
 	"us")
 		TARGET="hu"
 		;;
+	*)
+		TARGET="us"
+		;;
 esac
 echo "$CURRENT => $TARGET"
 setxkbmap $TARGET
