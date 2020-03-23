@@ -45,6 +45,7 @@ install pulseaudio-bluetooth
 install pulseaudio-jack 
 install pamixer 
 install fish
+install upower
 
 echo "  -> yay"
 {
