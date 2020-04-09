@@ -66,6 +66,7 @@ link_resource "xinitrc" ".xinitrc"
 link_resource "Xresources" ".Xresources"
 link_resource "helpers" "helpers"
 link_config "alacritty"
+link_config "fish"
 
 echo " => suckless.org"
 install_sl dwm
