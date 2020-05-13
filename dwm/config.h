@@ -87,7 +87,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_w,         spawn,          {.v = webcmd } },
 	{ MODKEY|ShiftMask|ControlMask, XK_w,         spawn,          {.v = privwebcmd } },
 	{ MODKEY|ShiftMask,             XK_l,         spawn,          {.v = lockcmd } },
-	{ MODKEY|ShiftMask|ControlMask, XK_k,         spawn,          SHCMD("~/helpers/toggle-keyboard.sh; okki-status --refresh=layout") },
+	{ MODKEY|ShiftMask,             XK_k,         spawn,          SHCMD("~/helpers/toggle-keyboard.sh; okki-status --refresh=layout") },
 	{ MODKEY,                       XK_b,         togglebar,      {0} },
 	{ MODKEY,                       XK_Left,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_Right,     focusstack,     {.i = -1 } },
