@@ -58,9 +58,6 @@ echo "  -> yay"
 } > /dev/null
 install_aur brillo
 
-echo " => oh-my-fish"
-curl -L https://get.oh-my.fish | fish
-
 echo " => configuration files" 
 link_resource "xinitrc" ".xinitrc"
 link_resource "Xresources" ".Xresources"

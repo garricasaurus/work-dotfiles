@@ -1,5 +1,4 @@
 #!/bin/sh
-
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 autorandr --change
 
@@ -38,12 +37,21 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export AWT_TOOLKIT=MToolkit
 
 # set wallpaper
-resolution=`xrandr | grep '*' | grep -Po '([0-9]+x[0-9]+)' | head -1`
 wallpaperdir=$HOME/dotfiles/wallpapers
-wallpaper="$wallpaperdir/wallpaper_$resolution.jpg"
-echo resolution=$resolution > ~/xinit.log
-echo wallaper=$wallpaper >> ~/xinit.log
-exec feh --bg-fill "$wallpaper" &
+wp_wide=$wallpaperdir/wallpaper_3840x1080.jpg
+wp_normal=$wallpaperdir/wallpaper_1920x1080.jpg
+current_profile=`autorandr --current`
+case $current_profile in
+	dual)
+		exec feh --bg-fill "$wp_wide" --bg-fill "$wp_normal" &
+		;;
+	docked)
+		exec feh --bg-fill "$wp_wide" &
+		;;
+	*)
+		exec feh --bg-fill "$wp_normal" &
+		;;
+esac	
 
 # status bar
 exec /usr/local/bin/okki-status &
