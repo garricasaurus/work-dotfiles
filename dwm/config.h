@@ -78,6 +78,7 @@ static const char *termcmd[]        = { "alacritty", NULL };
 static const char *webcmd[]         = { "chromium", NULL };
 static const char *privwebcmd[]     = { "chromium", "--incognito", NULL };
 static const char *lockcmd[]        = { "physlock", "-d", NULL };
+static const char *steamcmd[]       = { "steam", "NULL" };
 
 static Key keys[] = {
 	/* modifier                     key           function        argument */
@@ -87,6 +88,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_w,         spawn,          {.v = webcmd } },
 	{ MODKEY|ShiftMask|ControlMask, XK_w,         spawn,          {.v = privwebcmd } },
 	{ MODKEY|ShiftMask,             XK_l,         spawn,          {.v = lockcmd } },
+	{ MODKEY|ShiftMask,             XK_s,         spawn,          {.v = steamcmd } },
 	{ MODKEY|ShiftMask,             XK_k,         spawn,          SHCMD("~/helpers/toggle-keyboard.sh; okki-status --refresh=layout") },
 	{ MODKEY,                       XK_b,         togglebar,      {0} },
 	{ MODKEY,                       XK_Left,      focusstack,     {.i = +1 } },
