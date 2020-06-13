@@ -17,8 +17,11 @@ install_aur() {
 }
 
 install_sl() {
-	echo "  -> $1"
-	cd "$BASEDIR/$1" > /dev/null
+	echo "  -> fetching $1"
+	git clone "https://github.com/dargzero/$1" "$HOME/$1" > /dev/null
+	echo "  -> installing $1"
+	cd "$HOME/$1" > /dev/null
+	git checkout patched
 	sudo make clean install > /dev/null
 }
 
