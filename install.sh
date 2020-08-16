@@ -49,6 +49,8 @@ install pulseaudio-jack
 install pamixer 
 install fish
 install upower
+install scrot
+mkdir $HOME/Screenshots
 
 echo "  -> yay"
 {
@@ -64,6 +66,7 @@ install_aur brillo
 echo " => configuration files" 
 link_resource "xinitrc" ".xinitrc"
 link_resource "Xresources" ".Xresources"
+link_resource "vimrc" ".vimrc"
 link_resource "helpers" "helpers"
 link_config "alacritty"
 link_config "fish"
