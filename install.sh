@@ -7,38 +7,30 @@ if [ -z "$BASEDIR" ] ; then
 fi
 
 install() {
-	echo "  -> $1"
-	sudo pacman --noconfirm -Sy $1 > /dev/null
+	sudo pacman --noconfirm -Sy $1
 }
 
 install_aur() {
-	echo "  -> $1 (AUR)"
-	yay --noconfirm -Sy $1 > /dev/null
+	yay --noconfirm -Sy $1
 }
 
 install_sl() {
-	echo "  -> fetching $1"
-	git clone "https://github.com/dargzero/$1" "$HOME/$1" > /dev/null
-	echo "  -> installing $1"
-	cd "$HOME/$1" > /dev/null
-	git checkout patched
-	sudo make clean install > /dev/null
+	git clone -b patched "https://github.com/dargzero/$1" "$HOME/$1"
+	cd "$HOME/$1"
+	sudo make clean install
 }
 
 link_resource() {
-	echo "  -> linking $BASEDIR/$1 -> $HOME/$2"
-	rm -f "$HOME/$2" > /dev/null
-	ln -sf "$BASEDIR/$1" "$HOME/$2" > /dev/null
+	rm -f "$HOME/$2"
+	ln -sf "$BASEDIR/$1" "$HOME/$2"
 }
 
 link_config() {
-	echo "  -> linking config $BASEDIR/$1 -> $HOME/.config/$1"
-	rm -rf "$HOME/.config/$1" > /dev/null
-	mkdir -p "$HOME/.config" > /dev/null
-	ln -sf "$BASEDIR/$1" "$HOME/.config/$1" > /dev/null
+	rm -rf "$HOME/.config/$1"
+	mkdir -p "$HOME/.config"
+	ln -sf "$BASEDIR/$1" "$HOME/.config/$1"
 }
 
-echo " => installing packages"
 install git
 install go
 install noto-fonts
@@ -50,20 +42,19 @@ install pamixer
 install fish
 install upower
 install scrot
+
 mkdir $HOME/Screenshots
 
-echo "  -> yay"
-{
-	rm -rf $HOME/yay
-	git clone https://aur.archlinux.org/yay.git $HOME/yay
-	cd $HOME/yay
-	makepkg -si
-	cd $BASEDIR
-	rm -rf $HOME/yay
-} > /dev/null
+
+rm -rf $HOME/yay
+git clone https://aur.archlinux.org/yay.git $HOME/yay
+cd $HOME/yay
+makepkg -si
+cd $BASEDIR
+rm -rf $HOME/yay
+
 install_aur brillo
 
-echo " => configuration files" 
 link_resource "xinitrc" ".xinitrc"
 link_resource "Xresources" ".Xresources"
 link_resource "vimrc" ".vimrc"
@@ -71,16 +62,12 @@ link_resource "helpers" "helpers"
 link_config "alacritty"
 link_config "fish"
 
-echo " => suckless.org"
 install_sl dwm
 install_sl dmenu
 
-echo " => okki status"
-{
-	rm -rf $HOME/okki-status
-	git clone https://github.com/dargzero/okki-status $HOME/okki-status
-	cd $HOME/okki-status
-	go build
-	sudo mv okki-status /usr/local/bin/okki-status
-} > /dev/null
+rm -rf $HOME/okki-status
+git clone https://github.com/dargzero/okki-status $HOME/okki-status
+cd $HOME/okki-status
+go build
+sudo mv okki-status /usr/local/bin/okki-status
 
