@@ -1,12 +1,12 @@
 font:
   normal:
-    family: Noto Sans Mono
+    family: Source Code Pro
   bold:
-    family: Noto Sans Mono
+    family: Source Code Pro
   italic:
-    family: Noto Sans Mono
+    family: Source Code Pro
   bold_italic:
-    family: Noto Sans Mono
+    family: Source Code Pro
   size: 12.0
 
 # Colors (Nord)
