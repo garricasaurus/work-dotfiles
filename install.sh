@@ -66,8 +66,7 @@ install_sl dwm
 install_sl dmenu
 
 rm -rf $HOME/okki-status
-git clone https://github.com/dargzero/okki-status $HOME/okki-status
+git clone https://github.com/garricasaurus/okki-status.git $HOME/okki-status
 cd $HOME/okki-status
-go build
-sudo mv okki-status /usr/local/bin/okki-status
+sudo make clean install
 
