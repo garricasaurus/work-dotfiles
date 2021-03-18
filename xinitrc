@@ -53,6 +53,9 @@ case $current_profile in
 		;;
 esac	
 
+# ssh-agent
+eval $(ssh-agent)
+
 # status bar
 exec /usr/local/bin/okki-status &
 
