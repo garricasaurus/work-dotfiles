@@ -7,7 +7,7 @@ font:
     family: Source Code Pro
   bold_italic:
     family: Source Code Pro
-  size: 12.0
+  size: 14.0
 
 # Colors (Nord)
 colors:
@@ -40,4 +40,3 @@ colors:
 
 shell:
   program: /usr/bin/fish
-

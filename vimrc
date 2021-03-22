@@ -4,4 +4,10 @@ au VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 
 " basic settings
 set relativenumber
+set expandtab
+set autoindent
+set smartindent
+set shiftwidth=4
+set tabstop=4
+
 syntax on

@@ -6,20 +6,77 @@ if [ -z "$BASEDIR" ] ; then
   exit 1  # fail
 fi
 
-install() {
-	sudo pacman --noconfirm -Sy $1
-}
+# install base tools
+sudo pacman --noconfirm -Sy         \
+    base-devel                      \
+    git                             \
+    go
 
-install_aur() {
-	yay --noconfirm -Sy $1
-}
+# install yay
+rm -rf $HOME/yay
+git clone https://aur.archlinux.org/yay.git $HOME/yay
+cd $HOME/yay
+makepkg -si
+cd $BASEDIR
+rm -rf $HOME/yay
 
-install_sl() {
-	git clone -b patched "https://github.com/dargzero/$1" "$HOME/$1"
+# install some basic programs
+yay --noconfirm -Sy                 \
+    acpi                            \
+    arc-icon-theme                  \
+    autorandr                       \
+    brillo                          \
+    bluez                           \
+    code                            \
+    dust                            \
+    feh                             \
+    gimp                            \
+    gopass                          \
+    gopass-jsonapi-git              \
+    lf                              \
+    lxappearance                    \
+    make                            \
+    man-db                          \
+    man-pages                       \
+    mpv                             \
+    neofetch                        \
+    noto-fonts                      \
+    openssh                         \
+    p7zip                           \
+    pacman-contrib                  \
+    pacman-mirrorlist               \
+    pamixer                         \
+    physlock                        \
+    powertop                        \
+    pulseadio                       \
+    pulseaudio-alsa                 \
+    pulseaudio-bluetooth            \
+    pulseaudio-jack                 \
+    rust                            \
+    scrot                           \
+    slock                           \
+    steam                           \
+    sxiv                            \
+    upower                          \
+    xclip                           \
+    xorg-server                     \
+    xorg-apps                       \
+    xorg-xinit                      \
+    xorg-xsetroot                   
+
+# install customized utility from git
+grab() {
+    rm -rf $HOME/$1
+	git clone -b $2 "https://github.com/garricasaurus/$1" "$HOME/$1"
 	cd "$HOME/$1"
 	sudo make clean install
 }
 
+grab "dwm" "patched"
+grab "dmenu" "patched"
+grab "okki-status" "master"
+
+# symlink indiviual dotfiles
 link_resource() {
 	rm -f "$HOME/$2"
 	ln -sf "$BASEDIR/$1" "$HOME/$2"
@@ -31,42 +88,15 @@ link_config() {
 	ln -sf "$BASEDIR/$1" "$HOME/.config/$1"
 }
 
-install git
-install go
-install noto-fonts
-install pulseaudio 
-install pulseaudio-alsa 
-install pulseaudio-bluetooth 
-install pulseaudio-jack 
-install pamixer 
-install fish
-install upower
-install scrot
-
-mkdir $HOME/Screenshots
-
-
-rm -rf $HOME/yay
-git clone https://aur.archlinux.org/yay.git $HOME/yay
-cd $HOME/yay
-makepkg -si
-cd $BASEDIR
-rm -rf $HOME/yay
-
-install_aur brillo
-
 link_resource "xinitrc" ".xinitrc"
 link_resource "Xresources" ".Xresources"
+link_resource "bashrc" ".bashrc"
 link_resource "vimrc" ".vimrc"
 link_resource "helpers" "helpers"
 link_config "alacritty"
 link_config "fish"
+link_config "systemd"
 
-install_sl dwm
-install_sl dmenu
-
-rm -rf $HOME/okki-status
-git clone https://github.com/garricasaurus/okki-status.git $HOME/okki-status
-cd $HOME/okki-status
-sudo make clean install
-
+# setup misc directories
+mkdir $HOME/Pictures
+mkdir $HOME/Screenshots
