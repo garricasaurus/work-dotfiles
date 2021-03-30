@@ -75,6 +75,7 @@ grab() {
 grab "dwm" "patched"
 grab "dmenu" "patched"
 grab "okki-status" "master"
+grab "okki-refresh" "master"
 
 # symlink indiviual dotfiles
 link_resource() {
