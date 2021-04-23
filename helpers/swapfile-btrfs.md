@@ -3,15 +3,15 @@
 We need to create a dedicated btrfs subvolume which will hold the swapfile.
 
 ```shell
-sudo btrfs subvolume create /mnt/swap
-sudo chmod 700 /mnt/swap
+sudo btrfs subvolume create /@swap
+sudo chmod 700 /@swap
 sudo mkdir /swap
 ```
 
 Add it to `/etc/fstab`:
 
 ```
-<device>   /swap   btrfs    defaults,noatime,subvol=swap 0 0
+<device>   /swap   btrfs    defaults,noatime,subvol=@root/@swap 0 0
 ```
 
 Mount the subvolume:
