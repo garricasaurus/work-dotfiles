@@ -1,28 +1,32 @@
 # Create swapfile on btrfs
 
-We need to create a dedicated btrfs subvolume which will hold the swapfile.
+Steps are based on [this article](https://www.jwillikers.com/btrfs-swapfile), and adapted for the fish shell.
+
+Mount the root filesystem and create a subvolume for swap:
 
 ```shell
-sudo btrfs subvolume create /@swap
-sudo chmod 700 /@swap
+set ROOT_FS (df --output=source / | tail -n 1)
+sudo mount $ROOT_FS /mnt
+sudo btrfs subvolume create /mnt/swap
+sudo chmod 700 /mnt/swap
+```
+
+Create a directory where the swap subvolume will be mounted:
+
+```shell
 sudo mkdir /swap
 ```
 
 Add it to `/etc/fstab`:
 
-```
-<device>   /swap   btrfs    defaults,noatime,subvol=@root/@swap 0 0
+```shell
+echo "$ROOT_FS    /swap   btrfs   defaults,noatime,subol=swap   0 0" | sudo tee -a /etc/fstab
 ```
 
-Mount the subvolume:
+Mount the subvolume, and create the swap file as described on [ArchWiki](https://wiki.archlinux.org/index.php/Btrfs#Swap_file):
 
 ```shell
 sudo mount /swap
-```
-
-Initialize and allocate the swapfile ([ArchWiki](https://wiki.archlinux.org/index.php/Btrfs#Swap_file)):
-
-```shell
 sudo truncate -s 0 /swap/swapfile
 sudo chattr +C /swap/swapfile
 sudo btrfs property set /swap/swapfile compression none
@@ -32,15 +36,10 @@ sudo mkswap /swap/swapfile
 sudo swapon /swap/swapfile
 ```
 
-Add it to `/etc/fstab`:
-
-```
-/swap/swapfile   none   swap   defaults 0 0
-```
-
-Finally verify mounts:
+Finally add the swapfile to `/etc/fstab` and verify mounts:
 
 ```shell
+echo "/swap/swapfile   none   swap   defaults   0 0" | sudo tee -a /etc/fstab
 sudo findmnt --verify --verbose
 ```
 
