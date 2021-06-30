@@ -1,14 +1,15 @@
 # Create swapfile on btrfs
 
 Steps are based on [this article](https://www.jwillikers.com/btrfs-swapfile), and adapted for the fish shell.
+__Note__: won't work on filesystems that span multiple devices!
 
 Mount the root filesystem and create a subvolume for swap:
 
 ```shell
 set ROOT_FS (df --output=source / | tail -n 1)
 sudo mount $ROOT_FS /mnt
-sudo btrfs subvolume create /mnt/swap
-sudo chmod 700 /mnt/swap
+sudo btrfs subvolume create /mnt/@swap
+sudo chmod 700 /mnt/@swap
 ```
 
 Create a directory where the swap subvolume will be mounted:
@@ -20,7 +21,7 @@ sudo mkdir /swap
 Add it to `/etc/fstab`:
 
 ```shell
-echo "$ROOT_FS    /swap   btrfs   defaults,noatime,subol=swap   0 0" | sudo tee -a /etc/fstab
+echo "$ROOT_FS    /swap   btrfs   defaults,noatime,subvol=@swap   0 0" | sudo tee -a /etc/fstab
 ```
 
 Mount the subvolume, and create the swap file as described on [ArchWiki](https://wiki.archlinux.org/index.php/Btrfs#Swap_file):
