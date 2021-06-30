@@ -81,7 +81,7 @@ rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 ### Install base packages:
 
 ```
-pacstrap /mnt base base-devel linux linux-firmware btrfs-progs vim git sudo efibootmgr dialog iw iwd go terminus-font
+pacstrap /mnt base base-devel linux linux-firmware btrfs-progs vim git sudo efibootmgr dialog iw iwd dhcpcd go terminus-font
 ```
 
 ### Configure base system:
