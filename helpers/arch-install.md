@@ -3,25 +3,38 @@
 ## Base system
 
 ### Connect wifi (optional):
+
 ```
-wpa_passphrase <ssid> <password> >> /etc/wpa_supplicant/<wifi>.conf
-wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/<wifi>.conf
-dhcpcd
+iwctl --passphrase <pass> station <dev> connect <ssid>
+```
+
+To list devices:
+
+```
+iwctl device list
+```
+
+Verfiy connectivity:
+
+```
 ping archlinux.org
 ```
 
 ### Display larger fonts (optional):
+
 ```
 pacman -Sy terminus-font
 setfont ter-u22b
 ```
 
 ### Verify boot mode:
+
 ```
 ls /sys/firmware/efi/efivars
 ```
 
 ### update system clock:
+
 ```
 timedatectl set-ntp true
 ```
@@ -58,6 +71,7 @@ mount /dev/nvme0n1p1 /mnt/boot
 ```
 
 ### Rank pacman mirrors:
+
 ```
 pacman -Sy pacman-contrib
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
@@ -65,13 +79,15 @@ rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 ```
 
 ### Install base packages:
+
 ```
-pacstrap /mnt base base-devel linux linux-firmware btrfs-progs vim git sudo efibootmgr wpa_supplicant dialog iw go terminus-font networkmanager
+pacstrap /mnt base base-devel linux linux-firmware btrfs-progs vim git sudo efibootmgr dialog iw iwd go terminus-font
 ```
 
 ### Configure base system:
 
 #### fstab:
+
 ```
 genfstab -L /mnt >> /mnt/etc/fstab
 ```
@@ -118,11 +134,11 @@ echo '<username> ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/<username>
 
 #### init
 
-```
-nvim /etc/mkinitcpio.conf
-```
+In `/etc/mkinitcpio.conf` change hooks to: 
 
-Change hooks to: *HOOKS=(base systemd autodetect modconf block keyboard sd-vconsole sd-encrypt filesystems)*
+```
+HOOKS=(base systemd autodetect modconf block keyboard sd-vconsole sd-encrypt filesystems)
+```
 
 ```
 mkinitcpio -p linux
