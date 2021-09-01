@@ -1,5 +1,8 @@
 #!/bin/sh
-xrandr --setprovideroutputsource modesetting NVIDIA-0
+
+# enable for NVIDIA modesetting
+#xrandr --setprovideroutputsource modesetting NVIDIA-0
+
 autorandr --change
 
 userresources=$HOME/.Xresources

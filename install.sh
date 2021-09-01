@@ -23,6 +23,7 @@ rm -rf $HOME/yay
 # install some basic programs
 yay --noconfirm -Sy                 \
     acpi                            \
+    alacritty                       \
     arc-icon-theme                  \
     autorandr                       \
     brillo                          \
@@ -30,9 +31,11 @@ yay --noconfirm -Sy                 \
     code                            \
     dust                            \
     feh                             \
+    fish                            \
     gimp                            \
+    gnupg                           \
     gopass                          \
-    gopass-jsonapi-git              \
+    gopass-jsonapi                  \
     lf                              \
     lxappearance                    \
     make                            \
@@ -89,6 +92,11 @@ link_config() {
 	ln -sf "$BASEDIR/$1" "$HOME/.config/$1"
 }
 
+# setup misc directories
+mkdir -p $HOME/Pictures
+mkdir -p $HOME/Screenshots
+mkdir -p $HOME/.gnupg
+
 link_resource "xinitrc" ".xinitrc"
 link_resource "Xresources" ".Xresources"
 link_resource "bashrc" ".bashrc"
@@ -99,6 +107,4 @@ link_config "alacritty"
 link_config "fish"
 link_config "systemd"
 
-# setup misc directories
-mkdir $HOME/Pictures
-mkdir $HOME/Screenshots
+
