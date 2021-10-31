@@ -1,5 +1,5 @@
 " basic settings
-set number
+set nonumber
 set expandtab
 set autoindent
 set smartindent
