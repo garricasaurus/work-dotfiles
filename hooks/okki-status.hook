@@ -1,0 +1,8 @@
+[Trigger]
+Operation=Upgrade
+Type=Package
+Target=*
+
+[Action]
+Exec=/usr/local/bin/okki-refresh updates
+When=PostTransaction
