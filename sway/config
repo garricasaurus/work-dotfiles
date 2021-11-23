@@ -1,0 +1,148 @@
+### Variables
+
+# mod key
+set $mod Mod4
+
+# vim keys
+set $left h
+set $down j
+set $up k
+set $right l
+
+# application commands
+set $term "alacritty"
+set $browser "librewolf"
+set $pbrowser "librewolf -private-window"
+set $games "steam"
+
+# application launcher
+#   note: pass the final command to swaymsg so that the resulting window can be opened
+#   on the original workspace that the command was run on.
+set $menu dmenu_path | dmenu | xargs swaymsg exec --
+
+### Output configuration
+
+# wallpaper
+exec_always $HOME/dotfiles/sway/set_wallpaper.sh
+
+### Idle configuration
+
+exec swayidle -w \
+         timeout 600 'swaylock -f -c 000000' \
+         timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000'
+
+### Input configuration
+
+input type:touchpad {
+      tap enabled
+      natural_scroll disabled
+      dwt enabled
+}
+
+### Key bindings
+
+# system
+bindsym $mod+Shift+e swaymsg exit
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+c reload
+
+# launcher
+bindsym $mod+d exec $menu
+
+# app bindings
+bindsym $mod+Shift+Return exec $term
+bindsym $mod+Shift+KP_Enter exec $term
+bindsym $mod+Shift+w exec $browser
+bindsym $mod+Shift+Ctrl+w exec $pbrowser
+bindsym $mod+Shift+s exec $games
+
+# drag
+floating_modifier $mod normal
+
+# move focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+    
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+    
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+ 
+# split orientation
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+# switch layout style
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# fullscreen
+bindsym $mod+f fullscreen
+
+# floating
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+
+# resize mode
+bindsym $mod+r mode "resize"
+mode "resize" {
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+### Window
+default_border pixel
+
+### Status Bar
+
+# colors
+set $col_black #1e2127
+set $col_white #abb2bf
+set $col_gray #2e3340
+set $col_red #e06c75
+set $col_blue #61afef
+
+# bar
+bar {
+    position top
+    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+    colors {
+        statusline $col_white
+        background $col_black
+        focused_workspace $col_black $col_gray $col_white
+        inactive_workspace $col_black $col_black $col_white
+        active_workspace $col_black $col_blue $col_white
+        urgent_workspace $col_black $col_red $col_white
+    }
+}
+
+include /etc/sway/config.d/*
