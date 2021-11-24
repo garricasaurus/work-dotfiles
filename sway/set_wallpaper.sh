@@ -1,6 +1,8 @@
 #!/bin/sh
-set HRES=`swaymsg -t get_outputs | jq '.[0].current_mode.width'`
-case $HRES in
+
+WIDTH=`swaymsg -t get_outputs | jq '.[] | select(.focused) | .current_mode.width'`
+
+case $WIDTH in
 "3840")
 swaybg -i "$HOME/dotfiles/wallpapers/wallpaper_3840x1080.jpg"
 ;;

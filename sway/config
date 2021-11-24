@@ -12,8 +12,12 @@ set $right l
 # application commands
 set $term "alacritty"
 set $browser "librewolf"
-set $pbrowser "librewolf -private-window"
 set $games "steam"
+
+# utils
+set $sshot "$HOME/dotfiles/sway/screenshot.sh"
+set $volume "$HOME/dotfiles/sway/volume.sh"
+set $brightness "$HOME/dotfiles/sway/brightness.sh"
 
 # application launcher
 #   note: pass the final command to swaymsg so that the resulting window can be opened
@@ -54,7 +58,7 @@ bindsym $mod+d exec $menu
 bindsym $mod+Shift+Return exec $term
 bindsym $mod+Shift+KP_Enter exec $term
 bindsym $mod+Shift+w exec $browser
-bindsym $mod+Shift+Ctrl+w exec $pbrowser
+bindsym $mod+Shift+Ctrl+w exec $browser -private-window
 bindsym $mod+Shift+s exec $games
 
 # drag
@@ -119,8 +123,26 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
+# volume keys
+bindsym XF86AudioRaiseVolume exec $volume up 1
+bindsym XF86AudioLowerVolume exec $volume down 1
+bindsym Shift+XF86AudioRaiseVolume exec $volume up 10
+bindsym Shift+XF86AudioLowerVolume exec $volume down 10
+bindsym XF86AudioMute exec $volume mute
+
+# brightness keys
+bindsym XF86MonBrightnessUp exec $brightness up 1
+bindsym XF86MonBrightnessDown exec $brightness down 1
+bindsym Shift+XF86MonBrightnessUp exec $brightness up 10
+bindsym Shift+XF86MonBrightnessDown exec $brightness down 10
+
+# screenshot
+bindsym Print exec $sshot
+bindsym Shift+Print exec $sshot -g
+
 ### Window
 default_border pixel
+hide_edge_borders smart
 
 ### Status Bar
 
@@ -134,6 +156,7 @@ set $col_blue #61afef
 # bar
 bar {
     position top
+    font Ubuntu Mono:size=12
     status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
     colors {
         statusline $col_white
