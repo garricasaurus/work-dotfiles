@@ -1,28 +1,30 @@
 ### Variables
 
-# mod key
-set $mod Mod4
+set {
+    # mod key
+    $mod Mod4
+    
+    # vim keys
+    $left h
+    $down j
+    $up k
+    $right l
 
-# vim keys
-set $left h
-set $down j
-set $up k
-set $right l
+    # application commands
+    $term "alacritty"
+    $browser "librewolf"
+    $games "steam"
 
-# application commands
-set $term "alacritty"
-set $browser "librewolf"
-set $games "steam"
+    # utils
+    $sshot "$HOME/dotfiles/sway/screenshot.sh"
+    $volume "$HOME/dotfiles/sway/volume.sh"
+    $brightness "$HOME/dotfiles/sway/brightness.sh"
 
-# utils
-set $sshot "$HOME/dotfiles/sway/screenshot.sh"
-set $volume "$HOME/dotfiles/sway/volume.sh"
-set $brightness "$HOME/dotfiles/sway/brightness.sh"
-
-# application launcher
-#   note: pass the final command to swaymsg so that the resulting window can be opened
-#   on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+    # application launcher
+    #   note: pass the final command to swaymsg so that the resulting window can be opened
+    #   on the original workspace that the command was run on.
+    $menu dmenu_path | dmenu | xargs swaymsg exec --
+}
 
 ### Output configuration
 
@@ -46,99 +48,104 @@ input type:touchpad {
 
 ### Key bindings
 
-# system
-bindsym $mod+Shift+e swaymsg exit
-bindsym $mod+Shift+q kill
-bindsym $mod+Shift+c reload
+bindsym {
 
-# launcher
-bindsym $mod+d exec $menu
+    # system
+    $mod+Shift+e swaymsg exit
+    $mod+Shift+q kill
+    $mod+Shift+c reload
 
-# app bindings
-bindsym $mod+Shift+Return exec $term
-bindsym $mod+Shift+KP_Enter exec $term
-bindsym $mod+Shift+w exec $browser
-bindsym $mod+Shift+Ctrl+w exec $browser -private-window
-bindsym $mod+Shift+s exec $games
+    # launcher
+    $mod+d exec $menu
+
+    # app bindings
+    $mod+Shift+Return exec $term
+    $mod+Shift+KP_Enter exec $term
+    $mod+Shift+w exec $browser
+    $mod+Shift+Ctrl+w exec $browser -private-window
+    $mod+Shift+s exec $games
+
+    # move focus
+    $mod+$left focus left
+    $mod+$down focus down
+    $mod+$up focus up
+    $mod+$right focus right
+        
+    $mod+Left focus left
+    $mod+Down focus down
+    $mod+Up focus up
+    $mod+Right focus right
+
+    # switch to workspace
+    $mod+1 workspace number 1
+    $mod+2 workspace number 2
+    $mod+3 workspace number 3
+    $mod+4 workspace number 4
+    $mod+5 workspace number 5
+        
+    # move focused container to workspace
+    $mod+Shift+1 move container to workspace number 1
+    $mod+Shift+2 move container to workspace number 2
+    $mod+Shift+3 move container to workspace number 3
+    $mod+Shift+4 move container to workspace number 4
+    $mod+Shift+5 move container to workspace number 5
+ 
+    # split orientation
+    $mod+b splith
+    $mod+v splitv
+
+    # switch layout style
+    $mod+s layout stacking
+    $mod+w layout tabbed
+    $mod+e layout toggle split
+
+    # fullscreen
+    $mod+f fullscreen
+
+    # floating
+    $mod+Shift+space floating toggle
+    $mod+space focus mode_toggle
+    $mod+a focus parent
+
+    # volume keys
+    XF86AudioRaiseVolume exec $volume up 1
+    XF86AudioLowerVolume exec $volume down 1
+    Shift+XF86AudioRaiseVolume exec $volume up 10
+    Shift+XF86AudioLowerVolume exec $volume down 10
+    XF86AudioMute exec $volume mute
+
+    # brightness keys
+    XF86MonBrightnessUp exec $brightness up 1
+    XF86MonBrightnessDown exec $brightness down 1
+    Shift+XF86MonBrightnessUp exec $brightness up 10
+    Shift+XF86MonBrightnessDown exec $brightness down 10
+
+    # screenshot
+    Print exec $sshot
+    Shift+Print exec $sshot -g
+}
 
 # drag
 floating_modifier $mod normal
 
-# move focus
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
-    
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-# switch to workspace
-bindsym $mod+1 workspace number 1
-bindsym $mod+2 workspace number 2
-bindsym $mod+3 workspace number 3
-bindsym $mod+4 workspace number 4
-bindsym $mod+5 workspace number 5
-    
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number 1
-bindsym $mod+Shift+2 move container to workspace number 2
-bindsym $mod+Shift+3 move container to workspace number 3
-bindsym $mod+Shift+4 move container to workspace number 4
-bindsym $mod+Shift+5 move container to workspace number 5
- 
-# split orientation
-bindsym $mod+b splith
-bindsym $mod+v splitv
-
-# switch layout style
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
-# fullscreen
-bindsym $mod+f fullscreen
-
-# floating
-bindsym $mod+Shift+space floating toggle
-bindsym $mod+space focus mode_toggle
-bindsym $mod+a focus parent
-
 # resize mode
 bindsym $mod+r mode "resize"
 mode "resize" {
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym {
+        $left resize shrink width 10px
+        $down resize grow height 10px
+        $up resize shrink height 10px
+        $right resize grow width 10px
+    
+        Left resize shrink width 10px
+        Down resize grow height 10px
+        Up resize shrink height 10px
+        Right resize grow width 10px
 
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+        Return mode "default"
+        Escape mode "default"
+    }
 }
-
-# volume keys
-bindsym XF86AudioRaiseVolume exec $volume up 1
-bindsym XF86AudioLowerVolume exec $volume down 1
-bindsym Shift+XF86AudioRaiseVolume exec $volume up 10
-bindsym Shift+XF86AudioLowerVolume exec $volume down 10
-bindsym XF86AudioMute exec $volume mute
-
-# brightness keys
-bindsym XF86MonBrightnessUp exec $brightness up 1
-bindsym XF86MonBrightnessDown exec $brightness down 1
-bindsym Shift+XF86MonBrightnessUp exec $brightness up 10
-bindsym Shift+XF86MonBrightnessDown exec $brightness down 10
-
-# screenshot
-bindsym Print exec $sshot
-bindsym Shift+Print exec $sshot -g
 
 ### Window
 default_border pixel
@@ -147,11 +154,13 @@ hide_edge_borders smart
 ### Status Bar
 
 # colors
-set $col_black #1e2127
-set $col_white #abb2bf
-set $col_gray #2e3340
-set $col_red #e06c75
-set $col_blue #61afef
+set {
+    $col_black #1e2127
+    $col_white #abb2bf
+    $col_gray #2e3340
+    $col_red #e06c75
+    $col_blue #61afef
+}
 
 # bar
 bar {
