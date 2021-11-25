@@ -51,7 +51,7 @@ input type:touchpad {
 bindsym {
 
     # system
-    $mod+Shift+e swaymsg exit
+    $mod+Shift+e exit
     $mod+Shift+q kill
     $mod+Shift+c reload
 
@@ -75,6 +75,20 @@ bindsym {
     $mod+Down focus down
     $mod+Up focus up
     $mod+Right focus right
+    
+    $mod+space focus mode_toggle
+    $mod+a focus parent
+
+    # move container
+    $mod+Shift+$left move left
+    $mod+Shift+$down move down
+    $mod+Shift+$up move up
+    $mod+Shift+$right move right
+    
+    $mod+Shift+left move left
+    $mod+Shift+down move down
+    $mod+Shift+up move up
+    $mod+Shift+right move right
 
     # switch to workspace
     $mod+1 workspace number 1
@@ -104,8 +118,6 @@ bindsym {
 
     # floating
     $mod+Shift+space floating toggle
-    $mod+space focus mode_toggle
-    $mod+a focus parent
 
     # volume keys
     XF86AudioRaiseVolume exec $volume up 1
@@ -147,13 +159,8 @@ mode "resize" {
     }
 }
 
-### Window
-default_border pixel
-hide_edge_borders smart
+### Palette
 
-### Status Bar
-
-# colors
 set {
     $col_black #1e2127
     $col_white #abb2bf
@@ -162,14 +169,22 @@ set {
     $col_blue #61afef
 }
 
-# bar
+### Window
+default_border pixel
+gaps inner 5
+smart_borders no_gaps
+smart_gaps on
+hide_edge_borders smart_no_gaps
+
+### Status Bar
+
 bar {
     position top
-    font Ubuntu Mono:size=12
     status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
     colors {
         statusline $col_white
         background $col_black
+        font "Source Code Pro 10"
         focused_workspace $col_black $col_gray $col_white
         inactive_workspace $col_black $col_black $col_white
         active_workspace $col_black $col_blue $col_white
