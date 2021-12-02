@@ -16,9 +16,11 @@ set {
     $games "steam"
 
     # utils
-    $sshot "$HOME/dotfiles/sway/screenshot.sh"
+    $sshot "grim $HOME/Screenshots/Screenshot-`date -Is`.png"
+    $sshotr "grim -g `slurp` $HOME/Screenshots/Screenshot-`date -Is`.png" 
     $volume "$HOME/dotfiles/sway/volume.sh"
     $brightness "$HOME/dotfiles/sway/brightness.sh"
+    $refresh "/usr/local/bin/okki-refresh"
 
     # application launcher
     #   note: pass the final command to swaymsg so that the resulting window can be opened
@@ -33,10 +35,10 @@ exec_always $HOME/dotfiles/sway/set_wallpaper.sh
 
 ### Idle configuration
 
-exec swayidle -w \
-         timeout 600 'swaylock -f -c 000000' \
-         timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 000000'
+#exec swayidle -w \
+#         timeout 600 'swaylock -f -c 000000' \
+#         timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+#         before-sleep 'swaylock -f -c 000000'
 
 ### Input configuration
 
@@ -120,17 +122,17 @@ bindsym {
     $mod+Shift+space floating toggle
 
     # volume keys
-    XF86AudioRaiseVolume exec $volume up 1
-    XF86AudioLowerVolume exec $volume down 1
-    Shift+XF86AudioRaiseVolume exec $volume up 10
-    Shift+XF86AudioLowerVolume exec $volume down 10
-    XF86AudioMute exec $volume mute
+    XF86AudioRaiseVolume exec $volume up 1; exec $refresh volume
+    XF86AudioLowerVolume exec $volume down 1; exec $refresh volume
+    Shift+XF86AudioRaiseVolume exec $volume up 10; exec $refresh volume
+    Shift+XF86AudioLowerVolume exec $volume down 10; exec $refresh volume
+    XF86AudioMute exec $volume mute; exec $refresh volume
 
     # brightness keys
-    XF86MonBrightnessUp exec $brightness up 1
-    XF86MonBrightnessDown exec $brightness down 1
-    Shift+XF86MonBrightnessUp exec $brightness up 10
-    Shift+XF86MonBrightnessDown exec $brightness down 10
+    XF86MonBrightnessUp exec $brightness up 1; exec $refresh brightness
+    XF86MonBrightnessDown exec $brightness down 1; exec $refresh brightness
+    Shift+XF86MonBrightnessUp exec $brightness up 10; exec $refresh brightness
+    Shift+XF86MonBrightnessDown exec $brightness down 10; exec $refresh brightness
 
     # screenshot
     Print exec $sshot
@@ -180,7 +182,7 @@ hide_edge_borders smart_no_gaps
 
 bar {
     position top
-    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+    status_command /usr/local/bin/okki-status
     colors {
         statusline $col_white
         background $col_black
