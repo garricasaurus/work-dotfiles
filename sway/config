@@ -1,0 +1,197 @@
+### Variables
+
+set {
+    # mod key
+    $mod Mod4
+    
+    # vim keys
+    $left h
+    $down j
+    $up k
+    $right l
+
+    # application commands
+    $term "alacritty"
+    $browser "librewolf"
+    $games "steam"
+
+    # utils
+    $sshot "grim $HOME/Screenshots/Screenshot-`date -Is`.png"
+    $sshotr "grim -g `slurp` $HOME/Screenshots/Screenshot-`date -Is`.png" 
+    $volume "$HOME/dotfiles/sway/volume.sh"
+    $brightness "$HOME/dotfiles/sway/brightness.sh"
+    $refresh "/usr/local/bin/okki-refresh"
+
+    # application launcher
+    #   note: pass the final command to swaymsg so that the resulting window can be opened
+    #   on the original workspace that the command was run on.
+    $menu dmenu_path | dmenu | xargs swaymsg exec --
+}
+
+### Output configuration
+
+# wallpaper
+exec_always $HOME/dotfiles/sway/set_wallpaper.sh
+
+### Idle configuration
+
+#exec swayidle -w \
+#         timeout 600 'swaylock -f -c 000000' \
+#         timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+#         before-sleep 'swaylock -f -c 000000'
+
+### Input configuration
+
+input type:touchpad {
+      tap enabled
+      natural_scroll disabled
+      dwt enabled
+}
+
+### Key bindings
+
+bindsym {
+
+    # system
+    $mod+Shift+e exit
+    $mod+Shift+q kill
+    $mod+Shift+c reload
+
+    # launcher
+    $mod+d exec $menu
+
+    # app bindings
+    $mod+Shift+Return exec $term
+    $mod+Shift+KP_Enter exec $term
+    $mod+Shift+w exec $browser
+    $mod+Shift+Ctrl+w exec $browser -private-window
+    $mod+Shift+s exec $games
+
+    # move focus
+    $mod+$left focus left
+    $mod+$down focus down
+    $mod+$up focus up
+    $mod+$right focus right
+        
+    $mod+Left focus left
+    $mod+Down focus down
+    $mod+Up focus up
+    $mod+Right focus right
+    
+    $mod+space focus mode_toggle
+    $mod+a focus parent
+
+    # move container
+    $mod+Shift+$left move left
+    $mod+Shift+$down move down
+    $mod+Shift+$up move up
+    $mod+Shift+$right move right
+    
+    $mod+Shift+left move left
+    $mod+Shift+down move down
+    $mod+Shift+up move up
+    $mod+Shift+right move right
+
+    # switch to workspace
+    $mod+1 workspace number 1
+    $mod+2 workspace number 2
+    $mod+3 workspace number 3
+    $mod+4 workspace number 4
+    $mod+5 workspace number 5
+        
+    # move focused container to workspace
+    $mod+Shift+1 move container to workspace number 1
+    $mod+Shift+2 move container to workspace number 2
+    $mod+Shift+3 move container to workspace number 3
+    $mod+Shift+4 move container to workspace number 4
+    $mod+Shift+5 move container to workspace number 5
+ 
+    # split orientation
+    $mod+b splith
+    $mod+v splitv
+
+    # switch layout style
+    $mod+s layout stacking
+    $mod+w layout tabbed
+    $mod+e layout toggle split
+
+    # fullscreen
+    $mod+f fullscreen
+
+    # floating
+    $mod+Shift+space floating toggle
+
+    # volume keys
+    XF86AudioRaiseVolume exec $volume up 1; exec $refresh volume
+    XF86AudioLowerVolume exec $volume down 1; exec $refresh volume
+    Shift+XF86AudioRaiseVolume exec $volume up 10; exec $refresh volume
+    Shift+XF86AudioLowerVolume exec $volume down 10; exec $refresh volume
+    XF86AudioMute exec $volume mute; exec $refresh volume
+
+    # brightness keys
+    XF86MonBrightnessUp exec $brightness up 1; exec $refresh brightness
+    XF86MonBrightnessDown exec $brightness down 1; exec $refresh brightness
+    Shift+XF86MonBrightnessUp exec $brightness up 10; exec $refresh brightness
+    Shift+XF86MonBrightnessDown exec $brightness down 10; exec $refresh brightness
+
+    # screenshot
+    Print exec $sshot
+    Shift+Print exec $sshot -g
+}
+
+# drag
+floating_modifier $mod normal
+
+# resize mode
+bindsym $mod+r mode "resize"
+mode "resize" {
+    bindsym {
+        $left resize shrink width 10px
+        $down resize grow height 10px
+        $up resize shrink height 10px
+        $right resize grow width 10px
+    
+        Left resize shrink width 10px
+        Down resize grow height 10px
+        Up resize shrink height 10px
+        Right resize grow width 10px
+
+        Return mode "default"
+        Escape mode "default"
+    }
+}
+
+### Palette
+
+set {
+    $col_black #1e2127
+    $col_white #abb2bf
+    $col_gray #2e3340
+    $col_red #e06c75
+    $col_blue #61afef
+}
+
+### Window
+default_border pixel
+gaps inner 5
+smart_borders no_gaps
+smart_gaps on
+hide_edge_borders smart_no_gaps
+
+### Status Bar
+
+bar {
+    position top
+    status_command /usr/local/bin/okki-status
+    colors {
+        statusline $col_white
+        background $col_black
+        font "Source Code Pro 10"
+        focused_workspace $col_black $col_gray $col_white
+        inactive_workspace $col_black $col_black $col_white
+        active_workspace $col_black $col_blue $col_white
+        urgent_workspace $col_black $col_red $col_white
+    }
+}
+
+include /etc/sway/config.d/*

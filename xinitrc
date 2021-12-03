@@ -53,6 +53,6 @@ case $current_profile in
 esac	
 
 # status bar
-exec /usr/local/bin/okki-status &
+exec /usr/local/bin/okki-status-dwm &
 
 exec dwm
