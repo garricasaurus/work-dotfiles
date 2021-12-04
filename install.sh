@@ -36,6 +36,8 @@ yay --noconfirm -Sy                 \
     gnupg                           \
     gopass                          \
     gopass-jsonapi                  \
+    grim                            \
+    jq                              \
     lf                              \
     lxappearance                    \
     make                            \
@@ -59,13 +61,17 @@ yay --noconfirm -Sy                 \
     scrot                           \
     slock                           \
     steam                           \
+    sway                            \
+    swayidle                        \
+    swaylock                        \
     sxiv                            \
     upower                          \
     xclip                           \
     xorg-server                     \
     xorg-apps                       \
     xorg-xinit                      \
-    xorg-xsetroot                   
+    xorg-xsetroot                   \
+    xorg-xwayland
 
 # install customized utility from git
 grab() {
@@ -105,6 +111,7 @@ link_resource "gpg-agent.conf" ".gnupg/gpg-agent.conf"
 link_resource "helpers" "helpers"
 link_config "alacritty"
 link_config "fish"
+link_config "sway"
 link_config "systemd"
 
 
