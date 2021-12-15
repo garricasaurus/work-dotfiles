@@ -43,9 +43,14 @@ exec_always $HOME/dotfiles/sway/set_wallpaper.sh
 ### Input configuration
 
 input type:touchpad {
-      tap enabled
-      natural_scroll disabled
-      dwt enabled
+    tap enabled
+    natural_scroll disabled
+    dwt enabled
+}
+
+input type:keyboard {
+    xkb_layout us,hu
+    xkb_options grp:alt_shift_toggle
 }
 
 ### Key bindings
