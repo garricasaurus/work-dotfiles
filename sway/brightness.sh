@@ -12,4 +12,4 @@ case $1 in
 ;;
 esac
 
-pkexec brillo $DIR $2 -u 500
+pkexec brillo $DIR $2

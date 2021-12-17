@@ -127,17 +127,17 @@ bindsym {
     $mod+Shift+space floating toggle
 
     # volume keys
-    XF86AudioRaiseVolume exec $volume up 1; exec $refresh volume
-    XF86AudioLowerVolume exec $volume down 1; exec $refresh volume
-    Shift+XF86AudioRaiseVolume exec $volume up 10; exec $refresh volume
-    Shift+XF86AudioLowerVolume exec $volume down 10; exec $refresh volume
-    XF86AudioMute exec $volume mute; exec $refresh volume
+    XF86AudioRaiseVolume exec $volume up 1 && exec $refresh volume
+    XF86AudioLowerVolume exec $volume down 1 && exec $refresh volume
+    Shift+XF86AudioRaiseVolume exec $volume up 10 && exec $refresh volume
+    Shift+XF86AudioLowerVolume exec $volume down 10 && exec $refresh volume
+    XF86AudioMute exec $volume mute && exec $refresh volume
 
     # brightness keys
-    XF86MonBrightnessUp exec $brightness up 1; exec $refresh brightness
-    XF86MonBrightnessDown exec $brightness down 1; exec $refresh brightness
-    Shift+XF86MonBrightnessUp exec $brightness up 10; exec $refresh brightness
-    Shift+XF86MonBrightnessDown exec $brightness down 10; exec $refresh brightness
+    XF86MonBrightnessUp exec $brightness up 1 && $refresh brightness
+    XF86MonBrightnessDown exec $brightness down 1 && exec $refresh brightness
+    Shift+XF86MonBrightnessUp exec $brightness up 10 && exec $refresh brightness
+    Shift+XF86MonBrightnessDown exec $brightness down 10 &&exec $refresh brightness
 
     # screenshot
     Print exec $sshot
