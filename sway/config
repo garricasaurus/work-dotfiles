@@ -184,7 +184,9 @@ smart_gaps on
 hide_edge_borders smart_no_gaps
 
 ### Window Rules
+# discover window class 'swaymsg -t get_tree'
 for_window [app_id="zoom"] floating enable
+for_window [title="Battle.net"] floating enable
 
 ### Status Bar
 
