@@ -106,11 +106,11 @@ mkdir -p $HOME/.gnupg
 link_resource "xinitrc" ".xinitrc"
 link_resource "Xresources" ".Xresources"
 link_resource "bashrc" ".bashrc"
-link_resource "vimrc" ".vimrc"
 link_resource "gpg-agent.conf" ".gnupg/gpg-agent.conf"
 link_resource "helpers" "helpers"
 link_config "alacritty"
 link_config "fish"
+link_config "nvim"
 link_config "sway"
 link_config "systemd"
 
