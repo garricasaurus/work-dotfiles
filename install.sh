@@ -44,6 +44,7 @@ yay --noconfirm -Sy                 \
     man-db                          \
     man-pages                       \
     mpv                             \
+    most                            \
     neofetch                        \
     noto-fonts                      \
     openssh                         \
