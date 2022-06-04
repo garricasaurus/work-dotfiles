@@ -21,24 +21,29 @@ cd $BASEDIR
 rm -rf $HOME/yay
 
 # install some basic programs
-yay --noconfirm -Sy                 \
+yay -Sy                             \
     acpi                            \
     alacritty                       \
+    arc-gtk-theme                   \
     arc-icon-theme                  \
     autorandr                       \
     brillo                          \
     bluez                           \
+    capitaine-cursors               \
     code                            \
     dust                            \
-    feh                             \
+    firefox	                        \
     fish                            \
     gimp                            \
     gnupg                           \
     gopass                          \
     gopass-jsonapi                  \
     grim                            \
+    htop                            \
     jq                              \
     lf                              \
+    librewolf-bin                   \
+    lutris                          \
     lxappearance                    \
     make                            \
     man-db                          \
@@ -46,40 +51,44 @@ yay --noconfirm -Sy                 \
     mpv                             \
     most                            \
     neofetch                        \
+    neovim                          \
+    neovim-drop-in                  \
     noto-fonts                      \
     openssh                         \
+    otf-font-awesome                \
     p7zip                           \
     pacman-contrib                  \
     pacman-mirrorlist               \
     pamixer                         \
-    physlock                        \
+    proton-ge-custom-bin            \
+    polkit                          \
     powertop                        \
-    pulseadio                       \
-    pulseaudio-alsa                 \
-    pulseaudio-bluetooth            \
-    pulseaudio-jack                 \
     rust                            \
     scrot                           \
     slock                           \
     steam                           \
     sway                            \
+    swaybg                          \
     swayidle                        \
     swaylock                        \
     sxiv                            \
+    ttf-liberation                  \
     upower                          \
+    wine                            \
     xclip                           \
     xorg-server                     \
     xorg-apps                       \
     xorg-xinit                      \
     xorg-xsetroot                   \
-    xorg-xwayland
+    xorg-xwayland                   
 
 # install customized utility from git
 grab() {
     rm -rf $HOME/$1
 	git clone -b $2 "https://github.com/garricasaurus/$1" "$HOME/$1"
 	cd "$HOME/$1"
-	sudo make clean install
+	make clean build
+	sudo make install
 }
 
 grab "dwm" "patched"
@@ -108,6 +117,7 @@ link_resource "xinitrc" ".xinitrc"
 link_resource "Xresources" ".Xresources"
 link_resource "bashrc" ".bashrc"
 link_resource "gpg-agent.conf" ".gnupg/gpg-agent.conf"
+link_resource "ssh" ".ssh"
 link_resource "helpers" "helpers"
 link_config "alacritty"
 link_config "fish"
