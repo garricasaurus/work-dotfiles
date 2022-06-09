@@ -124,5 +124,4 @@ link_config "fish"
 link_config "nvim"
 link_config "sway"
 link_config "systemd"
-
-
+link_config "wireplumber"
