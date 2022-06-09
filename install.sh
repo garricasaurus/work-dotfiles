@@ -35,6 +35,7 @@ yay -Sy                             \
     firefox	                        \
     fish                            \
     gimp                            \
+    git-credential-gopass           \
     gnupg                           \
     gopass                          \
     gopass-jsonapi                  \
