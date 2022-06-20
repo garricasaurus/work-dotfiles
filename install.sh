@@ -34,7 +34,6 @@ yay -Sy                             \
     dust                            \
     firefox	                        \
     fish                            \
-    fish_ssh_agent                  \
     gimp                            \
     git-credential-gopass           \
     gnupg                           \
@@ -43,6 +42,7 @@ yay -Sy                             \
     grim                            \
     htop                            \
     jq                              \
+    keychain                        \
     lf                              \
     librewolf-bin                   \
     lutris                          \
@@ -77,6 +77,7 @@ yay -Sy                             \
     ttf-liberation                  \
     upower                          \
     wine                            \
+    x11-ssh-askpass                 \
     xclip                           \
     xorg-server                     \
     xorg-apps                       \

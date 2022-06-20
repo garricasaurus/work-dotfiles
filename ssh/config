@@ -1,2 +1,4 @@
 AddKeysToAgent yes
-Match host * exec "gpg-connect-agent UPDATESTARTUPTTY /bye"
+Host github.com
+   Preferredauthentications publickey
+   IdentityFile ~/.ssh/id_ed25519
