@@ -34,6 +34,7 @@ yay -Sy                             \
     dust                            \
     firefox	                        \
     fish                            \
+    fish_ssh_agent                  \
     gimp                            \
     git-credential-gopass           \
     gnupg                           \
