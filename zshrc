@@ -17,7 +17,13 @@ ENABLE_CORRECTION="true"                # command auto-correction
 HIST_STAMPS="yyyy-mm-dd"                # history ts format (strftime) 
 
 # plugins to load 
-plugins=(git)
+plugins=(autojump colored-man-pages git ssh-agent)
+
+# ssh-agent settings
+zstyle :omz:plugins:ssh-agent agent-forwarding yes
+zstyle :omz:plugins:ssh-agent lazy yes
+zstyle :omz:plugins:ssh-agent lifetime 4h
+zstyle :omz:plugins:ssh-agent quiet yes
 
 source $ZSH/oh-my-zsh.sh
 

@@ -26,6 +26,7 @@ yay -Sy                             \
     alacritty                       \
     arc-gtk-theme                   \
     arc-icon-theme                  \
+    autojump                        \
     autorandr                       \
     brillo                          \
     bluez                           \
