@@ -42,7 +42,6 @@ yay -Sy                             \
     grim                            \
     htop                            \
     jq                              \
-    keychain                        \
     lf                              \
     librewolf-bin                   \
     lutris                          \
