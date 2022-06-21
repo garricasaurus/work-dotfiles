@@ -1,1 +1,0 @@
-/home/garric/.local/share/omf/themes/nai/fish_prompt.fish

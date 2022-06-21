@@ -42,4 +42,4 @@ colors:
     - { index: 17, color: '0xd67ad2' }
 
 shell:
-  program: /usr/bin/fish
+  program: /usr/bin/bash
