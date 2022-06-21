@@ -118,6 +118,7 @@ mkdir -p $HOME/Screenshots
 mkdir -p $HOME/.gnupg
 
 link_resource "zshrc" ".zshrc"
+link_resource "zprofile" ".zprofile"
 link_resource "xinitrc" ".xinitrc"
 link_resource "Xresources" ".Xresources"
 link_resource "gpg-agent.conf" ".gnupg/gpg-agent.conf"

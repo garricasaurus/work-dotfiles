@@ -32,6 +32,7 @@ source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
 export EDITOR='vim'
 export ARCHFLAGS="-arch x86_64"
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Aliases
 alias zshconfig="$EDITOR ~/.zshrc"
