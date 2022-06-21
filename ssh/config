@@ -1,4 +1,1 @@
 AddKeysToAgent yes
-Host github.com
-   Preferredauthentications publickey
-   IdentityFile ~/.ssh/id_ed25519
