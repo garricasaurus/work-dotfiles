@@ -82,7 +82,8 @@ yay -Sy                             \
     xorg-apps                       \
     xorg-xinit                      \
     xorg-xsetroot                   \
-    xorg-xwayland                   
+    xorg-xwayland                   \
+    zsh
 
 # install customized utility from git
 grab() {
@@ -115,14 +116,13 @@ mkdir -p $HOME/Pictures
 mkdir -p $HOME/Screenshots
 mkdir -p $HOME/.gnupg
 
+link_resource "zshrc" ".zshrc"
 link_resource "xinitrc" ".xinitrc"
 link_resource "Xresources" ".Xresources"
-link_resource "bashrc" ".bashrc"
 link_resource "gpg-agent.conf" ".gnupg/gpg-agent.conf"
 link_resource "ssh" ".ssh"
 link_resource "helpers" "helpers"
 link_config "alacritty"
-link_config "fish"
 link_config "nvim"
 link_config "sway"
 link_config "systemd"
