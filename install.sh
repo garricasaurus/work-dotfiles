@@ -65,6 +65,7 @@ yay -Sy                             \
     proton-ge-custom-bin            \
     polkit                          \
     powertop                        \
+    rsync                           \
     rust                            \
     scrot                           \
     slock                           \
