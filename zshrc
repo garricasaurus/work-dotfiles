@@ -36,3 +36,5 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Aliases
 alias zshconfig="$EDITOR ~/.zshrc"
+alias mountnas="sudo mount -t nfs 192.168.0.235:/volume1/share /mnt/nas"
+alias dropoff="sudo mv $HOME/Download/*.torrent /mnt/nas/dropoff"
