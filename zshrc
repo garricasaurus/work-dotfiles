@@ -37,4 +37,4 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # Aliases
 alias zshconfig="$EDITOR ~/.zshrc"
 alias mountnas="sudo mount -t nfs 192.168.0.235:/volume1/share /mnt/nas"
-alias dropoff="sudo rsync -aP --remove-source-files $HOME/Download/*.torrent /mnt/nas/dropoff"
+alias dropoff="sudo rsync -aP --remove-source-files $HOME/Downloads/*.torrent /mnt/nas/dropoff"
