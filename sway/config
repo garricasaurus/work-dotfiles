@@ -188,6 +188,7 @@ hide_edge_borders smart_no_gaps
 for_window [app_id="mpv"] floating enable
 for_window [app_id="zoom"] floating enable
 for_window [title="Battle.net"] floating enable
+for_window [app_id="zenity"] floating enable
 
 ### Status Bar
 
