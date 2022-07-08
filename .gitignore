@@ -1,3 +1,5 @@
 nvim/autoload
 nvim/plugged
 ssh/id_ed25519*
+ssh/environ*
+ssh/known_hosts*
