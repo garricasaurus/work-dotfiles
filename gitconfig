@@ -1,0 +1,16 @@
+[alias]
+   st = status -sb
+   ll = log --oneline
+   lg = log --all --oneline --graph
+[pull]
+	rebase = true
+[user]
+	name = Richard Garai
+	email = garric@okki.hu
+	signingkey = 5F7D6CE447F5FEFEDE2A1BE2874C665319A8FA05
+[core]
+	editor = vim
+[init]
+	defaultBranch = master
+[commit]
+	gpgsign = true
