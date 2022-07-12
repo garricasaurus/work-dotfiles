@@ -198,7 +198,7 @@ bar {
     colors {
         statusline $col_white
         background $col_black
-        font "Source Code Pro 10"
+        font "Fira Code 10"
         focused_workspace $col_black $col_gray $col_white
         inactive_workspace $col_black $col_black $col_white
         active_workspace $col_black $col_blue $col_white
