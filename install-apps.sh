@@ -1,6 +1,5 @@
 #!/bin/sh
-yay --answerclean NotInstalled --answerdiff None --answeredit None
-yay -Sy                             \
+yay --removemake --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu -Sy \
     acpi                            \
     alacritty                       \
     arc-gtk-theme                   \
