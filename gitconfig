@@ -2,6 +2,8 @@
    st = status -sb
    ll = log --oneline
    lg = log --all --oneline --graph
+[fetch]
+    prune = true
 [pull]
 	rebase = true
 [user]
