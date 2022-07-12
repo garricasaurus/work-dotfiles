@@ -75,6 +75,9 @@ yay -Sy                             \
     swayidle                        \
     swaylock                        \
     sxiv                            \
+    ttf-fira-code                   \
+    ttf-fira-mono                   \
+    ttf-fira-sans                   \
     ttf-liberation                  \
     upower                          \
     wine                            \

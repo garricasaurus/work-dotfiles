@@ -1,12 +1,12 @@
 font:
   normal:
-    family: Source Code Pro
+    family: 'Fira Mono'
   bold:
-    family: Source Code Pro
+    family: 'Fira Mono'
   italic:
-    family: Source Code Pro
+    family: 'Fire Mono'
   bold_italic:
-    family: Source Code Pro
+    family: 'Fira Mono'
   size: 13.0
 
 # Nightfox Alacritty Colors
