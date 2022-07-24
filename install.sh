@@ -26,7 +26,7 @@ rm -rf $HOME/yay
 # install customized utility from git
 grab() {
     rm -rf $HOME/$1
-	git clone -b $2 "https://github.com/garricasaurus/$1" "$HOME/$1"
+	git clone -b $2 "https://git.okki.hu/garric/$1.git" "$HOME/$1"
 	cd "$HOME/$1"
 	make clean build
 	sudo make install
