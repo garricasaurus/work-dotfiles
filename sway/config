@@ -12,10 +12,13 @@ set {
 
     # application commands
     $term "alacritty"
-    $browser "librewolf"
+    $browser "firefox"
     $games "steam"
+    $comms "slack"
+    $email "thunderbird"
 
     # utils
+    $lock "swaylock"
     $sshot "grim $HOME/Screenshots/Screenshot-`date -Is`.png"
     $sshotr "grim -g `slurp` $HOME/Screenshots/Screenshot-`date -Is`.png" 
     $volume "$HOME/dotfiles/sway/volume.sh"
@@ -26,12 +29,36 @@ set {
     #   note: pass the final command to swaymsg so that the resulting window can be opened
     #   on the original workspace that the command was run on.
     $menu dmenu_path | dmenu | xargs swaymsg exec --
+
+    # screens
+    $screen1 "eDP-1"
+    $screen2 "HDMI-A-1"
 }
 
 ### Output configuration
 
+# screen positions
+output $screen1 pos 0 360
+output $screen2 pos 1920,0
+
+# screen to workspace assignments
+workspace 1 output $screen1
+workspace 2 output $screen1
+workspace 3 output $screen1
+workspace 4 output $screen1
+workspace 5 output $screen1
+
+
+workspace 6 output $screen2
+workspace 7 output $screen2
+workspace 8 output $screen2
+workspace 9 output $screen2
+
+# focus output without triggering a reload
+exec swaymsg focus output eDP-1
+
 # wallpaper
-exec_always $HOME/dotfiles/sway/set_wallpaper.sh
+exec_always swaybg -i `$HOME/dotfiles/sway/get_wallpaper.sh`
 
 ### Idle configuration
 
@@ -70,7 +97,8 @@ bindsym {
     $mod+Shift+KP_Enter exec $term
     $mod+Shift+w exec $browser
     $mod+Shift+Ctrl+w exec $browser -private-window
-    $mod+Shift+s exec $games
+    $mod+Shift+s exec $comms
+    $mod+Shift+m exec $email
 
     # move focus
     $mod+$left focus left
@@ -103,6 +131,10 @@ bindsym {
     $mod+3 workspace number 3
     $mod+4 workspace number 4
     $mod+5 workspace number 5
+    $mod+6 workspace number 6
+    $mod+7 workspace number 7
+    $mod+8 workspace number 8
+    $mod+9 workspace number 9
         
     # move focused container to workspace
     $mod+Shift+1 move container to workspace number 1
@@ -110,6 +142,10 @@ bindsym {
     $mod+Shift+3 move container to workspace number 3
     $mod+Shift+4 move container to workspace number 4
     $mod+Shift+5 move container to workspace number 5
+    $mod+Shift+6 move container to workspace number 6
+    $mod+Shift+7 move container to workspace number 7
+    $mod+Shift+8 move container to workspace number 8
+    $mod+Shift+9 move container to workspace number 9
  
     # split orientation
     $mod+b splith
@@ -138,6 +174,9 @@ bindsym {
     XF86MonBrightnessDown exec $brightness down 1 && exec $refresh brightness
     Shift+XF86MonBrightnessUp exec $brightness up 10 && exec $refresh brightness
     Shift+XF86MonBrightnessDown exec $brightness down 10 &&exec $refresh brightness
+
+    # lock screen
+    $mod+Shift+p exec $lock
 
     # screenshot
     Print exec $sshot
@@ -173,7 +212,7 @@ set {
     $col_white #abb2bf
     $col_gray #2e3340
     $col_red #e06c75
-    $col_blue #61afef
+    $col_blue #324f73
 }
 
 ### Window
@@ -199,9 +238,9 @@ bar {
         statusline $col_white
         background $col_black
         font "Fira Code 10"
-        focused_workspace $col_black $col_gray $col_white
+        focused_workspace $col_black $col_blue $col_white
         inactive_workspace $col_black $col_black $col_white
-        active_workspace $col_black $col_blue $col_white
+        active_workspace $col_black $col_gray $col_white
         urgent_workspace $col_black $col_red $col_white
     }
 }

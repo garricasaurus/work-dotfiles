@@ -35,6 +35,7 @@ export ARCHFLAGS="-arch x86_64"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$HOME/.local/bin
 
 # Aliases
 alias zshconfig="$EDITOR ~/.zshrc"

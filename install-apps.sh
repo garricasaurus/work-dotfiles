@@ -8,11 +8,14 @@ yay --removemake --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu -Sy \
     autorandr                       \
     brillo                          \
     bluez                           \
+    bluez-utils                     \
     capitaine-cursors               \
+    cifs-utils                      \
     code                            \
     dust                            \
     firefox	                        \
     fish                            \
+    fwupd                           \
     gimp                            \
     git-credential-gopass           \
     gnupg                           \
@@ -33,7 +36,9 @@ yay --removemake --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu -Sy \
     neofetch                        \
     neovim                          \
     neovim-drop-in                  \
+    nfs-utils                       \
     noto-fonts                      \
+    ntfs-3g                         \
     openssh                         \
     otf-font-awesome                \
     p7zip                           \
@@ -57,10 +62,12 @@ yay --removemake --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu -Sy \
     ttf-fira-mono                   \
     ttf-fira-sans                   \
     ttf-liberation                  \
+    udisks2                         \
     upower                          \
     wine                            \
     x11-ssh-askpass                 \
     xclip                           \
+    xdg-desktop-portal-wlr          \
     xorg-server                     \
     xorg-apps                       \
     xorg-xinit                      \

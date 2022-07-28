@@ -1,0 +1,6 @@
+image=`$HOME/dotfiles/sway/get_wallpaper.sh`
+scaling=fit
+ignore-empty-password
+daemonize
+hide-keyboard-layout
+indicator-caps-lock
