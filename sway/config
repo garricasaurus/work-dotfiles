@@ -3,29 +3,30 @@
 set {
 
     $cfgdir "$HOME/dotfiles/sway"
+    $font   "Fira Code 10"
+    $icons  "Arc"
 
     # mod key
     $mod Mod4
 
     # vim keys
-    $left h
-    $down j
-    $up k
+    $left  h
+    $down  j
+    $up    k
     $right l
 
     # application commands
-    $term "alacritty"
-    $browser "firefox"
-    $games "steam"
-    $comms "slack"
-    $email "thunderbird"
+    $term    "alacritty"
+    $browser "librewolf"
+    $comms   "slack"
+    $email   "thunderbird"
 
     # utils
-    $lock "swaylock"
-    $sshot "grimshot"
-    $volume "$cfgdir/volume.sh"
+    $lock       "swaylock"
+    $sshot      "grimshot"
+    $volume     "$cfgdir/volume.sh"
     $brightness "$cfgdir/brightness.sh"
-    $refresh "/usr/local/bin/okki-refresh"
+    $refresh    "/usr/local/bin/okki-refresh"
 
     # application launcher
     #   note: pass the final command to swaymsg so that the resulting window can be opened
@@ -50,7 +51,6 @@ workspace 3 output $screen1
 workspace 4 output $screen1
 workspace 5 output $screen1
 
-
 workspace 6 output $screen2
 workspace 7 output $screen2
 workspace 8 output $screen2
@@ -72,14 +72,14 @@ exec_always swaybg -i `$cfgdir/get_wallpaper.sh`
 ### Input configuration
 
 input type:touchpad {
-    tap enabled
+    tap            enabled
     natural_scroll disabled
-    dwt enabled
+    dwt            enabled
 }
 
 input type:keyboard {
-    xkb_layout us,hu
-    xkb_options grp:rctrl_rshift_toggle
+    xkb_layout   us,hu
+    xkb_options  grp:rctrl_rshift_toggle
 }
 
 ### Key bindings
@@ -87,170 +87,155 @@ input type:keyboard {
 bindsym {
 
     # system
-    $mod+Shift+e exit
-    $mod+Shift+q kill
-    $mod+Shift+c reload
+    $mod+Shift+e          exit
+    $mod+Shift+q          kill
+    $mod+Shift+c          reload
+    $mod+r                mode "resize"
+    $mod+Shift+p          exec $lock
 
     # launcher
-    $mod+d exec $menu
+    $mod+d                exec $menu
 
     # app bindings
-    $mod+Shift+Return exec $term
-    $mod+Shift+KP_Enter exec $term
-    $mod+Shift+w exec $browser
-    $mod+Shift+Ctrl+w exec $browser -private-window
-    $mod+Shift+s exec $comms
-    $mod+Shift+m exec $email
+    $mod+Shift+Return     exec $term
+    $mod+Shift+KP_Enter   exec $term
+    $mod+Shift+w          exec $browser
+    $mod+Shift+Ctrl+w     exec $browser -private-window
+
+    # switch workspace
+    $mod+1                workspace number 1
+    $mod+2                workspace number 2
+    $mod+3                workspace number 3
+    $mod+4                workspace number 4
+    $mod+5                workspace number 5
 
     # move focus
-    $mod+$left focus left
-    $mod+$down focus down
-    $mod+$up focus up
-    $mod+$right focus right
+    $mod+$left            focus left
+    $mod+$down            focus down
+    $mod+$up              focus up
+    $mod+$right           focus right
 
-    $mod+Left focus left
-    $mod+Down focus down
-    $mod+Up focus up
-    $mod+Right focus right
+    $mod+left             focus left
+    $mod+down             focus down
+    $mod+up               focus up
+    $mod+right            focus right
 
-    $mod+space focus mode_toggle
-    $mod+a focus parent
+    $mod+space            focus mode_toggle
+    $mod+a                focus parent
 
     # move container
-    $mod+Shift+$left move left
-    $mod+Shift+$down move down
-    $mod+Shift+$up move up
-    $mod+Shift+$right move right
+    $mod+Shift+$left      move left
+    $mod+Shift+$down      move down
+    $mod+Shift+$up        move up
+    $mod+Shift+$right     move right
 
-    $mod+Shift+left move left
-    $mod+Shift+down move down
-    $mod+Shift+up move up
-    $mod+Shift+right move right
+    $mod+Shift+left       move left
+    $mod+Shift+down       move down
+    $mod+Shift+up         move up
+    $mod+Shift+right      move right
 
-    # switch to workspace
-    $mod+1 workspace number 1
-    $mod+2 workspace number 2
-    $mod+3 workspace number 3
-    $mod+4 workspace number 4
-    $mod+5 workspace number 5
-    $mod+6 workspace number 6
-    $mod+7 workspace number 7
-    $mod+8 workspace number 8
-    $mod+9 workspace number 9
+    $mod+Shift+1          move container to workspace number 1
+    $mod+Shift+2          move container to workspace number 2
+    $mod+Shift+3          move container to workspace number 3
+    $mod+Shift+4          move container to workspace number 4
+    $mod+Shift+5          move container to workspace number 5
 
-    # move focused container to workspace
-    $mod+Shift+1 move container to workspace number 1
-    $mod+Shift+2 move container to workspace number 2
-    $mod+Shift+3 move container to workspace number 3
-    $mod+Shift+4 move container to workspace number 4
-    $mod+Shift+5 move container to workspace number 5
-    $mod+Shift+6 move container to workspace number 6
-    $mod+Shift+7 move container to workspace number 7
-    $mod+Shift+8 move container to workspace number 8
-    $mod+Shift+9 move container to workspace number 9
+    # layouts
+    $mod+b                splith
+    $mod+v                splitv
+    $mod+s                layout stacking
+    $mod+w                layout tabbed
+    $mod+e                layout toggle split
+    $mod+f                fullscreen
+    $mod+Shift+space      floating toggle
 
-    # split orientation
-    $mod+b splith
-    $mod+v splitv
-
-    # switch layout style
-    $mod+s layout stacking
-    $mod+w layout tabbed
-    $mod+e layout toggle split
-
-    # fullscreen
-    $mod+f fullscreen
-
-    # floating
-    $mod+Shift+space floating toggle
-
-    # volume keys
-    XF86AudioRaiseVolume exec $volume up 1 && exec $refresh volume
-    XF86AudioLowerVolume exec $volume down 1 && exec $refresh volume
-    Shift+XF86AudioRaiseVolume exec $volume up 10 && exec $refresh volume
-    Shift+XF86AudioLowerVolume exec $volume down 10 && exec $refresh volume
-    XF86AudioMute exec $volume mute && exec $refresh volume
-
-    # brightness keys
-    XF86MonBrightnessUp exec $brightness up 1 && $refresh brightness
-    XF86MonBrightnessDown exec $brightness down 1 && exec $refresh brightness
-    Shift+XF86MonBrightnessUp exec $brightness up 10 && exec $refresh brightness
-    Shift+XF86MonBrightnessDown exec $brightness down 10 &&exec $refresh brightness
-
-    # lock screen
-    $mod+Shift+p exec $lock
+    # multimedia keys
+    XF86AudioMute                   exec $volume     mute     && exec $refresh volume
+    XF86AudioRaiseVolume            exec $volume     up   1   && exec $refresh volume
+    XF86AudioLowerVolume            exec $volume     down 1   && exec $refresh volume
+    Shift+XF86AudioRaiseVolume      exec $volume     up   10  && exec $refresh volume
+    Shift+XF86AudioLowerVolume      exec $volume     down 10  && exec $refresh volume
+    XF86MonBrightnessUp             exec $brightness up   1   && exec $refresh brightness
+    XF86MonBrightnessDown           exec $brightness down 1   && exec $refresh brightness
+    Shift+XF86MonBrightnessUp       exec $brightness up   10  && exec $refresh brightness
+    Shift+XF86MonBrightnessDown     exec $brightness down 10  && exec $refresh brightness
 
     # screenshot
-    Print exec $sshot copy screen
-    Shift+Print exec $sshot copy output
-    Ctrl+Print exec $sshot copy area
-    Alt+Print exec $sshot copy window
-    $mod+Print exec $sshot save screen `$cfgdir/get_sshot.sh`
-    $mod+Shift+Print exec $sshot save output `$cfgdir/get_sshot.sh`
-    $mod+Ctrl+Print exec $sshot save area `$cfgdir/get_sshot.sh`
-    $mod+Alt+Print exec $sshot save window `$cfgdir/get_sshot.sh`
+    Print              exec $sshot copy screen
+    Shift+Print        exec $sshot copy output
+    Ctrl+Print         exec $sshot copy area
+    Alt+Print          exec $sshot copy window
+    $mod+Print         exec $sshot save screen   `$cfgdir/get_sshot.sh`
+    $mod+Shift+Print   exec $sshot save output   `$cfgdir/get_sshot.sh`
+    $mod+Ctrl+Print    exec $sshot save area     `$cfgdir/get_sshot.sh`
+    $mod+Alt+Print     exec $sshot save window   `$cfgdir/get_sshot.sh`
 }
 
 # drag
 floating_modifier $mod normal
 
-# resize mode
-bindsym $mod+r mode "resize"
+### Resize Mode
+
 mode "resize" {
     bindsym {
-        $left resize shrink width 10px
-        $down resize grow height 10px
-        $up resize shrink height 10px
-        $right resize grow width 10px
-
-        Left resize shrink width 10px
-        Down resize grow height 10px
-        Up resize shrink height 10px
-        Right resize grow width 10px
-
-        Return mode "default"
-        Escape mode "default"
+        $left   resize shrink   width   10px
+        $down   resize grow     height  10px
+        $up     resize shrink   height  10px
+        $right  resize grow     width   10px
+        left    resize shrink   width   10px
+        down    resize grow     height  10px
+        up      resize shrink   height  10px
+        right   resize grow     width   10px
+        Return  mode "default"
+        Escape  mode "default"
     }
 }
 
-### Palette
-
+### Color Palette
 set {
-    $col_black #1e2127
-    $col_white #abb2bf
-    $col_gray #2e3340
-    $col_red #e06c75
-    $col_blue #324f73
+    $col_black   #1e2127
+    $col_white   #abb2bf
+    $col_gray    #2e3340
+    $col_red     #e06c75
+    $col_blue    #324f73
 }
 
-### Window
-default_border pixel
-gaps inner 5
-smart_borders no_gaps
-smart_gaps on
+### Window Setup
+default_border    pixel
+smart_borders     no_gaps
+smart_gaps        on
+gaps              inner 5
 hide_edge_borders smart_no_gaps
 
-### Window Rules
-# discover window class 'swaymsg -t get_tree'
-for_window [app_id="mpv"] floating enable
-for_window [app_id="zoom"] floating enable
-for_window [title="Battle.net"] floating enable
-for_window [app_id="zenity"] floating enable
 
 ### Status Bar
 
 bar {
-    position top
-    status_command /usr/local/bin/okki-status
+
+    font              $font
+    position          top
+    status_command    /usr/local/bin/okki-status
+
     colors {
-        statusline $col_white
-        background $col_black
-        font "Fira Code 10"
-        focused_workspace $col_black $col_blue $col_white
-        inactive_workspace $col_black $col_black $col_white
-        active_workspace $col_black $col_gray $col_white
-        urgent_workspace $col_black $col_red $col_white
+        statusline             $col_white
+        background             $col_black
+        focused_workspace      $col_black    $col_blue    $col_white
+        inactive_workspace     $col_black    $col_black   $col_white
+        active_workspace       $col_black    $col_gray    $col_white
+        urgent_workspace       $col_black    $col_red     $col_white
+    }
+
+    tray {
+        icon_theme     $icons
+        tray_padding   5
     }
 }
+
+### Window Rules
+# discover window class 'swaymsg -t get_tree'
+for_window [app_id="mpv"]             floating enable
+for_window [app_id="zoom"]            floating enable
+for_window [title="Battle.net"]       floating enable
+for_window [app_id="zenity"]          floating enable
 
 include /etc/sway/config.d/*
