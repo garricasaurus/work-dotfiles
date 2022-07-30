@@ -22,6 +22,7 @@ yay --removemake --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu -Sy \
     gopass                          \
     gopass-jsonapi                  \
     grim                            \
+    grimshot                        \
     htop                            \
     jq                              \
     lf                              \
@@ -65,6 +66,7 @@ yay --removemake --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu -Sy \
     udisks2                         \
     upower                          \
     wine                            \
+    wl-clipboard                    \
     x11-ssh-askpass                 \
     xclip                           \
     xdg-desktop-portal-wlr          \
