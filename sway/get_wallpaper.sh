@@ -1,7 +1,7 @@
 #!/bin/sh
 
 WP_DIR="$HOME/dotfiles/wallpapers"
-WIDTH=`swaymsg -t get_outputs | jq '.[] | select(.focused) | .current_mode_width'`
+WIDTH=`swaymsg -t get_outputs | jq '.[] | select(.focused) | .current_mode.width'`
 
 case $WIDTH in
     "3840")
